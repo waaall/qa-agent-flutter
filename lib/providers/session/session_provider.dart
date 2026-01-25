@@ -5,6 +5,8 @@ import '../../services/chat_service.dart';
 import '../chat/chat_provider.dart';
 import 'session_notifier.dart';
 
+export 'session_notifier.dart';
+
 /// 会话状态 Provider
 final sessionNotifierProvider = StateNotifierProvider<SessionNotifier, SessionState>((ref) {
   return SessionNotifier();

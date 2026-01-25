@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
-import 'package:flutter_highlight/themes/github-dark.dart';
+import 'package:flutter_highlight/themes/atom-one-dark.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Markdown 渲染器
@@ -115,7 +115,7 @@ class _CodeBlockBuilder extends MarkdownElementBuilder {
       child: HighlightView(
         code,
         language: language ?? 'plaintext',
-        theme: isDark ? githubDarkTheme : githubTheme,
+        theme: isDark ? atomOneDarkTheme : githubTheme,
         padding: const EdgeInsets.all(12),
         textStyle: const TextStyle(
           fontFamily: 'monospace',
