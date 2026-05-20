@@ -21,9 +21,10 @@ ChatRequest _$ChatRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatRequest {
-  // 用户查询内容
-  String get query => throw _privateConstructorUsedError; // 会话 ID
-  String? get sessionId => throw _privateConstructorUsedError; // 是否重置会话
+  // 用户查询内容。
+  String get query => throw _privateConstructorUsedError; // 会话 ID。
+  @JsonKey(name: 'session_id')
+  String? get sessionId => throw _privateConstructorUsedError; // 是否重置会话。
   bool get reset => throw _privateConstructorUsedError;
 
   /// Serializes this ChatRequest to a JSON map.
@@ -43,7 +44,11 @@ abstract class $ChatRequestCopyWith<$Res> {
     $Res Function(ChatRequest) then,
   ) = _$ChatRequestCopyWithImpl<$Res, ChatRequest>;
   @useResult
-  $Res call({String query, String? sessionId, bool reset});
+  $Res call({
+    String query,
+    @JsonKey(name: 'session_id') String? sessionId,
+    bool reset,
+  });
 }
 
 /// @nodoc
@@ -94,7 +99,11 @@ abstract class _$$ChatRequestImplCopyWith<$Res>
   ) = __$$ChatRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String query, String? sessionId, bool reset});
+  $Res call({
+    String query,
+    @JsonKey(name: 'session_id') String? sessionId,
+    bool reset,
+  });
 }
 
 /// @nodoc
@@ -139,20 +148,21 @@ class __$$ChatRequestImplCopyWithImpl<$Res>
 class _$ChatRequestImpl implements _ChatRequest {
   const _$ChatRequestImpl({
     required this.query,
-    this.sessionId,
+    @JsonKey(name: 'session_id') this.sessionId,
     this.reset = false,
   });
 
   factory _$ChatRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatRequestImplFromJson(json);
 
-  // 用户查询内容
+  // 用户查询内容。
   @override
   final String query;
-  // 会话 ID
+  // 会话 ID。
   @override
+  @JsonKey(name: 'session_id')
   final String? sessionId;
-  // 是否重置会话
+  // 是否重置会话。
   @override
   @JsonKey()
   final bool reset;
@@ -194,18 +204,19 @@ class _$ChatRequestImpl implements _ChatRequest {
 abstract class _ChatRequest implements ChatRequest {
   const factory _ChatRequest({
     required final String query,
-    final String? sessionId,
+    @JsonKey(name: 'session_id') final String? sessionId,
     final bool reset,
   }) = _$ChatRequestImpl;
 
   factory _ChatRequest.fromJson(Map<String, dynamic> json) =
       _$ChatRequestImpl.fromJson;
 
-  // 用户查询内容
+  // 用户查询内容。
   @override
-  String get query; // 会话 ID
+  String get query; // 会话 ID。
   @override
-  String? get sessionId; // 是否重置会话
+  @JsonKey(name: 'session_id')
+  String? get sessionId; // 是否重置会话。
   @override
   bool get reset;
 
@@ -223,13 +234,16 @@ ChatResponse _$ChatResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatResponse {
-  // 回答内容
-  String get answer => throw _privateConstructorUsedError; // 会话 ID
-  String get sessionId => throw _privateConstructorUsedError; // 查询类型
-  String? get queryType => throw _privateConstructorUsedError; // 使用的引擎
-  List<String>? get enginesUsed => throw _privateConstructorUsedError; // 置信度
-  double? get confidence => throw _privateConstructorUsedError; // 原始查询
-  String? get query => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError; // 回答内容。
+  String get answer => throw _privateConstructorUsedError; // 会话 ID。
+  @JsonKey(name: 'session_id')
+  String get sessionId => throw _privateConstructorUsedError; // 知识增强是否生效。
+  @JsonKey(name: 'enhancement_applied')
+  bool get enhancementApplied => throw _privateConstructorUsedError; // 匹配知识条数。
+  @JsonKey(name: 'matched_entries')
+  int get matchedEntries => throw _privateConstructorUsedError; // 后端原始输出，调试时使用。
+  String? get raw => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
 
   /// Serializes this ChatResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -249,12 +263,13 @@ abstract class $ChatResponseCopyWith<$Res> {
   ) = _$ChatResponseCopyWithImpl<$Res, ChatResponse>;
   @useResult
   $Res call({
+    bool success,
     String answer,
-    String sessionId,
-    String? queryType,
-    List<String>? enginesUsed,
-    double? confidence,
-    String? query,
+    @JsonKey(name: 'session_id') String sessionId,
+    @JsonKey(name: 'enhancement_applied') bool enhancementApplied,
+    @JsonKey(name: 'matched_entries') int matchedEntries,
+    String? raw,
+    String? error,
   });
 }
 
@@ -273,15 +288,20 @@ class _$ChatResponseCopyWithImpl<$Res, $Val extends ChatResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? success = null,
     Object? answer = null,
     Object? sessionId = null,
-    Object? queryType = freezed,
-    Object? enginesUsed = freezed,
-    Object? confidence = freezed,
-    Object? query = freezed,
+    Object? enhancementApplied = null,
+    Object? matchedEntries = null,
+    Object? raw = freezed,
+    Object? error = freezed,
   }) {
     return _then(
       _value.copyWith(
+            success: null == success
+                ? _value.success
+                : success // ignore: cast_nullable_to_non_nullable
+                      as bool,
             answer: null == answer
                 ? _value.answer
                 : answer // ignore: cast_nullable_to_non_nullable
@@ -290,21 +310,21 @@ class _$ChatResponseCopyWithImpl<$Res, $Val extends ChatResponse>
                 ? _value.sessionId
                 : sessionId // ignore: cast_nullable_to_non_nullable
                       as String,
-            queryType: freezed == queryType
-                ? _value.queryType
-                : queryType // ignore: cast_nullable_to_non_nullable
+            enhancementApplied: null == enhancementApplied
+                ? _value.enhancementApplied
+                : enhancementApplied // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            matchedEntries: null == matchedEntries
+                ? _value.matchedEntries
+                : matchedEntries // ignore: cast_nullable_to_non_nullable
+                      as int,
+            raw: freezed == raw
+                ? _value.raw
+                : raw // ignore: cast_nullable_to_non_nullable
                       as String?,
-            enginesUsed: freezed == enginesUsed
-                ? _value.enginesUsed
-                : enginesUsed // ignore: cast_nullable_to_non_nullable
-                      as List<String>?,
-            confidence: freezed == confidence
-                ? _value.confidence
-                : confidence // ignore: cast_nullable_to_non_nullable
-                      as double?,
-            query: freezed == query
-                ? _value.query
-                : query // ignore: cast_nullable_to_non_nullable
+            error: freezed == error
+                ? _value.error
+                : error // ignore: cast_nullable_to_non_nullable
                       as String?,
           )
           as $Val,
@@ -322,12 +342,13 @@ abstract class _$$ChatResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
+    bool success,
     String answer,
-    String sessionId,
-    String? queryType,
-    List<String>? enginesUsed,
-    double? confidence,
-    String? query,
+    @JsonKey(name: 'session_id') String sessionId,
+    @JsonKey(name: 'enhancement_applied') bool enhancementApplied,
+    @JsonKey(name: 'matched_entries') int matchedEntries,
+    String? raw,
+    String? error,
   });
 }
 
@@ -345,15 +366,20 @@ class __$$ChatResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? success = null,
     Object? answer = null,
     Object? sessionId = null,
-    Object? queryType = freezed,
-    Object? enginesUsed = freezed,
-    Object? confidence = freezed,
-    Object? query = freezed,
+    Object? enhancementApplied = null,
+    Object? matchedEntries = null,
+    Object? raw = freezed,
+    Object? error = freezed,
   }) {
     return _then(
       _$ChatResponseImpl(
+        success: null == success
+            ? _value.success
+            : success // ignore: cast_nullable_to_non_nullable
+                  as bool,
         answer: null == answer
             ? _value.answer
             : answer // ignore: cast_nullable_to_non_nullable
@@ -362,21 +388,21 @@ class __$$ChatResponseImplCopyWithImpl<$Res>
             ? _value.sessionId
             : sessionId // ignore: cast_nullable_to_non_nullable
                   as String,
-        queryType: freezed == queryType
-            ? _value.queryType
-            : queryType // ignore: cast_nullable_to_non_nullable
+        enhancementApplied: null == enhancementApplied
+            ? _value.enhancementApplied
+            : enhancementApplied // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        matchedEntries: null == matchedEntries
+            ? _value.matchedEntries
+            : matchedEntries // ignore: cast_nullable_to_non_nullable
+                  as int,
+        raw: freezed == raw
+            ? _value.raw
+            : raw // ignore: cast_nullable_to_non_nullable
                   as String?,
-        enginesUsed: freezed == enginesUsed
-            ? _value._enginesUsed
-            : enginesUsed // ignore: cast_nullable_to_non_nullable
-                  as List<String>?,
-        confidence: freezed == confidence
-            ? _value.confidence
-            : confidence // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        query: freezed == query
-            ? _value.query
-            : query // ignore: cast_nullable_to_non_nullable
+        error: freezed == error
+            ? _value.error
+            : error // ignore: cast_nullable_to_non_nullable
                   as String?,
       ),
     );
@@ -387,48 +413,44 @@ class __$$ChatResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatResponseImpl implements _ChatResponse {
   const _$ChatResponseImpl({
+    required this.success,
     required this.answer,
-    required this.sessionId,
-    this.queryType,
-    final List<String>? enginesUsed,
-    this.confidence,
-    this.query,
-  }) : _enginesUsed = enginesUsed;
+    @JsonKey(name: 'session_id') required this.sessionId,
+    @JsonKey(name: 'enhancement_applied') this.enhancementApplied = false,
+    @JsonKey(name: 'matched_entries') this.matchedEntries = 0,
+    this.raw,
+    this.error,
+  });
 
   factory _$ChatResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatResponseImplFromJson(json);
 
-  // 回答内容
+  @override
+  final bool success;
+  // 回答内容。
   @override
   final String answer;
-  // 会话 ID
+  // 会话 ID。
   @override
+  @JsonKey(name: 'session_id')
   final String sessionId;
-  // 查询类型
+  // 知识增强是否生效。
   @override
-  final String? queryType;
-  // 使用的引擎
-  final List<String>? _enginesUsed;
-  // 使用的引擎
+  @JsonKey(name: 'enhancement_applied')
+  final bool enhancementApplied;
+  // 匹配知识条数。
   @override
-  List<String>? get enginesUsed {
-    final value = _enginesUsed;
-    if (value == null) return null;
-    if (_enginesUsed is EqualUnmodifiableListView) return _enginesUsed;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  // 置信度
+  @JsonKey(name: 'matched_entries')
+  final int matchedEntries;
+  // 后端原始输出，调试时使用。
   @override
-  final double? confidence;
-  // 原始查询
+  final String? raw;
   @override
-  final String? query;
+  final String? error;
 
   @override
   String toString() {
-    return 'ChatResponse(answer: $answer, sessionId: $sessionId, queryType: $queryType, enginesUsed: $enginesUsed, confidence: $confidence, query: $query)';
+    return 'ChatResponse(success: $success, answer: $answer, sessionId: $sessionId, enhancementApplied: $enhancementApplied, matchedEntries: $matchedEntries, raw: $raw, error: $error)';
   }
 
   @override
@@ -436,30 +458,29 @@ class _$ChatResponseImpl implements _ChatResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatResponseImpl &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.answer, answer) || other.answer == answer) &&
             (identical(other.sessionId, sessionId) ||
                 other.sessionId == sessionId) &&
-            (identical(other.queryType, queryType) ||
-                other.queryType == queryType) &&
-            const DeepCollectionEquality().equals(
-              other._enginesUsed,
-              _enginesUsed,
-            ) &&
-            (identical(other.confidence, confidence) ||
-                other.confidence == confidence) &&
-            (identical(other.query, query) || other.query == query));
+            (identical(other.enhancementApplied, enhancementApplied) ||
+                other.enhancementApplied == enhancementApplied) &&
+            (identical(other.matchedEntries, matchedEntries) ||
+                other.matchedEntries == matchedEntries) &&
+            (identical(other.raw, raw) || other.raw == raw) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    success,
     answer,
     sessionId,
-    queryType,
-    const DeepCollectionEquality().hash(_enginesUsed),
-    confidence,
-    query,
+    enhancementApplied,
+    matchedEntries,
+    raw,
+    error,
   );
 
   /// Create a copy of ChatResponse
@@ -478,30 +499,35 @@ class _$ChatResponseImpl implements _ChatResponse {
 
 abstract class _ChatResponse implements ChatResponse {
   const factory _ChatResponse({
+    required final bool success,
     required final String answer,
-    required final String sessionId,
-    final String? queryType,
-    final List<String>? enginesUsed,
-    final double? confidence,
-    final String? query,
+    @JsonKey(name: 'session_id') required final String sessionId,
+    @JsonKey(name: 'enhancement_applied') final bool enhancementApplied,
+    @JsonKey(name: 'matched_entries') final int matchedEntries,
+    final String? raw,
+    final String? error,
   }) = _$ChatResponseImpl;
 
   factory _ChatResponse.fromJson(Map<String, dynamic> json) =
       _$ChatResponseImpl.fromJson;
 
-  // 回答内容
   @override
-  String get answer; // 会话 ID
+  bool get success; // 回答内容。
   @override
-  String get sessionId; // 查询类型
+  String get answer; // 会话 ID。
   @override
-  String? get queryType; // 使用的引擎
+  @JsonKey(name: 'session_id')
+  String get sessionId; // 知识增强是否生效。
   @override
-  List<String>? get enginesUsed; // 置信度
+  @JsonKey(name: 'enhancement_applied')
+  bool get enhancementApplied; // 匹配知识条数。
   @override
-  double? get confidence; // 原始查询
+  @JsonKey(name: 'matched_entries')
+  int get matchedEntries; // 后端原始输出，调试时使用。
   @override
-  String? get query;
+  String? get raw;
+  @override
+  String? get error;
 
   /// Create a copy of ChatResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -517,10 +543,9 @@ HistoryMessage _$HistoryMessageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HistoryMessage {
-  // 角色
-  String get role => throw _privateConstructorUsedError; // 内容
-  String get content => throw _privateConstructorUsedError; // 时间戳
-  int get timestamp => throw _privateConstructorUsedError; // 额外信息
+  String get role => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'additional_kwargs')
   Map<String, dynamic>? get additionalKwargs =>
       throw _privateConstructorUsedError;
 
@@ -544,8 +569,7 @@ abstract class $HistoryMessageCopyWith<$Res> {
   $Res call({
     String role,
     String content,
-    int timestamp,
-    Map<String, dynamic>? additionalKwargs,
+    @JsonKey(name: 'additional_kwargs') Map<String, dynamic>? additionalKwargs,
   });
 }
 
@@ -566,7 +590,6 @@ class _$HistoryMessageCopyWithImpl<$Res, $Val extends HistoryMessage>
   $Res call({
     Object? role = null,
     Object? content = null,
-    Object? timestamp = null,
     Object? additionalKwargs = freezed,
   }) {
     return _then(
@@ -579,10 +602,6 @@ class _$HistoryMessageCopyWithImpl<$Res, $Val extends HistoryMessage>
                 ? _value.content
                 : content // ignore: cast_nullable_to_non_nullable
                       as String,
-            timestamp: null == timestamp
-                ? _value.timestamp
-                : timestamp // ignore: cast_nullable_to_non_nullable
-                      as int,
             additionalKwargs: freezed == additionalKwargs
                 ? _value.additionalKwargs
                 : additionalKwargs // ignore: cast_nullable_to_non_nullable
@@ -605,8 +624,7 @@ abstract class _$$HistoryMessageImplCopyWith<$Res>
   $Res call({
     String role,
     String content,
-    int timestamp,
-    Map<String, dynamic>? additionalKwargs,
+    @JsonKey(name: 'additional_kwargs') Map<String, dynamic>? additionalKwargs,
   });
 }
 
@@ -626,7 +644,6 @@ class __$$HistoryMessageImplCopyWithImpl<$Res>
   $Res call({
     Object? role = null,
     Object? content = null,
-    Object? timestamp = null,
     Object? additionalKwargs = freezed,
   }) {
     return _then(
@@ -639,10 +656,6 @@ class __$$HistoryMessageImplCopyWithImpl<$Res>
             ? _value.content
             : content // ignore: cast_nullable_to_non_nullable
                   as String,
-        timestamp: null == timestamp
-            ? _value.timestamp
-            : timestamp // ignore: cast_nullable_to_non_nullable
-                  as int,
         additionalKwargs: freezed == additionalKwargs
             ? _value._additionalKwargs
             : additionalKwargs // ignore: cast_nullable_to_non_nullable
@@ -658,26 +671,20 @@ class _$HistoryMessageImpl implements _HistoryMessage {
   const _$HistoryMessageImpl({
     required this.role,
     required this.content,
-    required this.timestamp,
+    @JsonKey(name: 'additional_kwargs')
     final Map<String, dynamic>? additionalKwargs,
   }) : _additionalKwargs = additionalKwargs;
 
   factory _$HistoryMessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$HistoryMessageImplFromJson(json);
 
-  // 角色
   @override
   final String role;
-  // 内容
   @override
   final String content;
-  // 时间戳
-  @override
-  final int timestamp;
-  // 额外信息
   final Map<String, dynamic>? _additionalKwargs;
-  // 额外信息
   @override
+  @JsonKey(name: 'additional_kwargs')
   Map<String, dynamic>? get additionalKwargs {
     final value = _additionalKwargs;
     if (value == null) return null;
@@ -688,7 +695,7 @@ class _$HistoryMessageImpl implements _HistoryMessage {
 
   @override
   String toString() {
-    return 'HistoryMessage(role: $role, content: $content, timestamp: $timestamp, additionalKwargs: $additionalKwargs)';
+    return 'HistoryMessage(role: $role, content: $content, additionalKwargs: $additionalKwargs)';
   }
 
   @override
@@ -698,8 +705,6 @@ class _$HistoryMessageImpl implements _HistoryMessage {
             other is _$HistoryMessageImpl &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
             const DeepCollectionEquality().equals(
               other._additionalKwargs,
               _additionalKwargs,
@@ -712,7 +717,6 @@ class _$HistoryMessageImpl implements _HistoryMessage {
     runtimeType,
     role,
     content,
-    timestamp,
     const DeepCollectionEquality().hash(_additionalKwargs),
   );
 
@@ -737,21 +741,19 @@ abstract class _HistoryMessage implements HistoryMessage {
   const factory _HistoryMessage({
     required final String role,
     required final String content,
-    required final int timestamp,
+    @JsonKey(name: 'additional_kwargs')
     final Map<String, dynamic>? additionalKwargs,
   }) = _$HistoryMessageImpl;
 
   factory _HistoryMessage.fromJson(Map<String, dynamic> json) =
       _$HistoryMessageImpl.fromJson;
 
-  // 角色
   @override
-  String get role; // 内容
+  String get role;
   @override
-  String get content; // 时间戳
+  String get content;
   @override
-  int get timestamp; // 额外信息
-  @override
+  @JsonKey(name: 'additional_kwargs')
   Map<String, dynamic>? get additionalKwargs;
 
   /// Create a copy of HistoryMessage
@@ -770,8 +772,11 @@ SessionHistoryResponse _$SessionHistoryResponseFromJson(
 
 /// @nodoc
 mixin _$SessionHistoryResponse {
-  // 会话 ID
-  String get sessionId => throw _privateConstructorUsedError; // 历史消息
+  bool get success => throw _privateConstructorUsedError;
+  @JsonKey(name: 'session_id')
+  String get sessionId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'message_count')
+  int get messageCount => throw _privateConstructorUsedError;
   List<HistoryMessage> get history => throw _privateConstructorUsedError;
 
   /// Serializes this SessionHistoryResponse to a JSON map.
@@ -791,7 +796,12 @@ abstract class $SessionHistoryResponseCopyWith<$Res> {
     $Res Function(SessionHistoryResponse) then,
   ) = _$SessionHistoryResponseCopyWithImpl<$Res, SessionHistoryResponse>;
   @useResult
-  $Res call({String sessionId, List<HistoryMessage> history});
+  $Res call({
+    bool success,
+    @JsonKey(name: 'session_id') String sessionId,
+    @JsonKey(name: 'message_count') int messageCount,
+    List<HistoryMessage> history,
+  });
 }
 
 /// @nodoc
@@ -811,13 +821,26 @@ class _$SessionHistoryResponseCopyWithImpl<
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? sessionId = null, Object? history = null}) {
+  $Res call({
+    Object? success = null,
+    Object? sessionId = null,
+    Object? messageCount = null,
+    Object? history = null,
+  }) {
     return _then(
       _value.copyWith(
+            success: null == success
+                ? _value.success
+                : success // ignore: cast_nullable_to_non_nullable
+                      as bool,
             sessionId: null == sessionId
                 ? _value.sessionId
                 : sessionId // ignore: cast_nullable_to_non_nullable
                       as String,
+            messageCount: null == messageCount
+                ? _value.messageCount
+                : messageCount // ignore: cast_nullable_to_non_nullable
+                      as int,
             history: null == history
                 ? _value.history
                 : history // ignore: cast_nullable_to_non_nullable
@@ -837,7 +860,12 @@ abstract class _$$SessionHistoryResponseImplCopyWith<$Res>
   ) = __$$SessionHistoryResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String sessionId, List<HistoryMessage> history});
+  $Res call({
+    bool success,
+    @JsonKey(name: 'session_id') String sessionId,
+    @JsonKey(name: 'message_count') int messageCount,
+    List<HistoryMessage> history,
+  });
 }
 
 /// @nodoc
@@ -854,13 +882,26 @@ class __$$SessionHistoryResponseImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? sessionId = null, Object? history = null}) {
+  $Res call({
+    Object? success = null,
+    Object? sessionId = null,
+    Object? messageCount = null,
+    Object? history = null,
+  }) {
     return _then(
       _$SessionHistoryResponseImpl(
+        success: null == success
+            ? _value.success
+            : success // ignore: cast_nullable_to_non_nullable
+                  as bool,
         sessionId: null == sessionId
             ? _value.sessionId
             : sessionId // ignore: cast_nullable_to_non_nullable
                   as String,
+        messageCount: null == messageCount
+            ? _value.messageCount
+            : messageCount // ignore: cast_nullable_to_non_nullable
+                  as int,
         history: null == history
             ? _value._history
             : history // ignore: cast_nullable_to_non_nullable
@@ -874,19 +915,24 @@ class __$$SessionHistoryResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SessionHistoryResponseImpl implements _SessionHistoryResponse {
   const _$SessionHistoryResponseImpl({
-    required this.sessionId,
+    required this.success,
+    @JsonKey(name: 'session_id') required this.sessionId,
+    @JsonKey(name: 'message_count') required this.messageCount,
     required final List<HistoryMessage> history,
   }) : _history = history;
 
   factory _$SessionHistoryResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SessionHistoryResponseImplFromJson(json);
 
-  // 会话 ID
   @override
+  final bool success;
+  @override
+  @JsonKey(name: 'session_id')
   final String sessionId;
-  // 历史消息
+  @override
+  @JsonKey(name: 'message_count')
+  final int messageCount;
   final List<HistoryMessage> _history;
-  // 历史消息
   @override
   List<HistoryMessage> get history {
     if (_history is EqualUnmodifiableListView) return _history;
@@ -896,7 +942,7 @@ class _$SessionHistoryResponseImpl implements _SessionHistoryResponse {
 
   @override
   String toString() {
-    return 'SessionHistoryResponse(sessionId: $sessionId, history: $history)';
+    return 'SessionHistoryResponse(success: $success, sessionId: $sessionId, messageCount: $messageCount, history: $history)';
   }
 
   @override
@@ -904,8 +950,11 @@ class _$SessionHistoryResponseImpl implements _SessionHistoryResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SessionHistoryResponseImpl &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.sessionId, sessionId) ||
                 other.sessionId == sessionId) &&
+            (identical(other.messageCount, messageCount) ||
+                other.messageCount == messageCount) &&
             const DeepCollectionEquality().equals(other._history, _history));
   }
 
@@ -913,7 +962,9 @@ class _$SessionHistoryResponseImpl implements _SessionHistoryResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
+    success,
     sessionId,
+    messageCount,
     const DeepCollectionEquality().hash(_history),
   );
 
@@ -937,16 +988,23 @@ class _$SessionHistoryResponseImpl implements _SessionHistoryResponse {
 
 abstract class _SessionHistoryResponse implements SessionHistoryResponse {
   const factory _SessionHistoryResponse({
-    required final String sessionId,
+    required final bool success,
+    @JsonKey(name: 'session_id') required final String sessionId,
+    @JsonKey(name: 'message_count') required final int messageCount,
     required final List<HistoryMessage> history,
   }) = _$SessionHistoryResponseImpl;
 
   factory _SessionHistoryResponse.fromJson(Map<String, dynamic> json) =
       _$SessionHistoryResponseImpl.fromJson;
 
-  // 会话 ID
   @override
-  String get sessionId; // 历史消息
+  bool get success;
+  @override
+  @JsonKey(name: 'session_id')
+  String get sessionId;
+  @override
+  @JsonKey(name: 'message_count')
+  int get messageCount;
   @override
   List<HistoryMessage> get history;
 

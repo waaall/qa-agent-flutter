@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config/constants.dart';
+import '../../models/message.dart';
+import '../../providers/tts/tts_provider.dart';
 import 'message_item.dart';
 
-/// 消息列表
-class MessageList extends StatelessWidget {
-  final List<Map<String, dynamic>> messages;
+/// 消息列表。
+class MessageList extends ConsumerWidget {
+  final List<Message> messages;
 
-  const MessageList({
-    super.key,
-    required this.messages,
-  });
+  const MessageList({super.key, required this.messages});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ttsNotifier = ref.read(ttsNotifierProvider.notifier);
+    ref.watch(ttsNotifierProvider);
+
     return ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 16),
       itemCount: messages.length,
@@ -25,16 +28,13 @@ class MessageList extends StatelessWidget {
               maxWidth: UIConstants.maxMessageWidth,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: MessageItem(
-                role: message['role'] as String? ?? 'user',
-                content: message['content'] as String? ?? '',
-                isLoading: message['isLoading'] as bool? ?? false,
-                metadata: message['metadata'] as Map<String, dynamic>?,
-                error: message['error'] as String?,
+                message: message,
+                ttsLoading: ttsNotifier.isLoadingMessage(message.id),
+                ttsPlaying: ttsNotifier.isPlayingMessage(message.id),
+                onPlayTts: ttsNotifier.playMessage,
+                onStopTts: ttsNotifier.stop,
               ),
             ),
           ),

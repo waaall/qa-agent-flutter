@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/chat/chat_provider.dart';
+import '../common/workspace_switcher.dart';
 import 'message_list.dart';
 import 'input_box.dart';
 
-/// 聊天容器
+/// 聊天容器。
 class ChatContainer extends ConsumerWidget {
   final VoidCallback? onMenuTap;
   final bool showMenuButton;
 
-  const ChatContainer({
-    super.key,
-    this.onMenuTap,
-    this.showMenuButton = false,
-  });
+  const ChatContainer({super.key, this.onMenuTap, this.showMenuButton = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +22,6 @@ class ChatContainer extends ConsumerWidget {
 
     return Column(
       children: [
-        // 头部
         Container(
           height: 56,
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -45,42 +41,26 @@ class ChatContainer extends ConsumerWidget {
                   onPressed: onMenuTap,
                   tooltip: '菜单',
                 ),
+              const SizedBox(width: 8),
               const Expanded(
                 child: Text(
                   '智能问答',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
               ),
+              const WorkspaceSwitcher(),
             ],
           ),
         ),
-        // 消息列表
         Expanded(
           child: messages.isEmpty
               ? _buildEmptyState(context)
-              : MessageList(
-                  messages: messages.map((m) => {
-                    'role': m.role,
-                    'content': m.content,
-                    'isLoading': m.isLoading,
-                    'error': m.error,
-                    'metadata': m.metadata != null ? {
-                      'queryType': m.metadata!.queryType,
-                      'enginesUsed': m.metadata!.enginesUsed,
-                      'confidence': m.metadata!.confidence,
-                    } : null,
-                  }).toList(),
-                ),
+              : MessageList(messages: messages),
         ),
-        // 输入框
         InputBox(
           isLoading: isLoading,
-          onSend: (content) {
-            ref.read(chatControllerProvider).sendMessage(content);
-          },
+          onSend: (content) =>
+              ref.read(chatControllerProvider).sendMessage(content),
         ),
       ],
     );

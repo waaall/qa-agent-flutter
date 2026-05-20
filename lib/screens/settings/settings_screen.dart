@@ -47,7 +47,7 @@ class SettingsScreen extends ConsumerWidget {
             child: ExpansionTile(
               leading: const Icon(Icons.dns_outlined),
               title: const Text('后端配置'),
-              subtitle: const Text('配置 API 和 STT 服务地址'),
+              subtitle: const Text('配置 Agent、STT 和 TTS 服务地址'),
               children: const [
                 Padding(
                   padding: EdgeInsets.all(16),

@@ -10,26 +10,26 @@ class ApiClient {
   late Dio _dio;
   String _baseUrl;
 
-  ApiClient({String? baseUrl}) : _baseUrl = baseUrl ?? AppConfig.defaultApiBaseUrl {
+  ApiClient({String? baseUrl})
+    : _baseUrl = baseUrl ?? AppConfig.defaultAgentBaseUrl {
     _dio = _createDio();
   }
 
   Dio _createDio() {
-    final dio = Dio(BaseOptions(
-      baseUrl: _baseUrl,
-      connectTimeout: const Duration(milliseconds: AppConfig.connectTimeout),
-      receiveTimeout: const Duration(milliseconds: AppConfig.receiveTimeout),
-      sendTimeout: const Duration(milliseconds: AppConfig.sendTimeout),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    ));
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: _baseUrl,
+        connectTimeout: const Duration(milliseconds: AppConfig.connectTimeout),
+        receiveTimeout: const Duration(milliseconds: AppConfig.receiveTimeout),
+        sendTimeout: const Duration(milliseconds: AppConfig.sendTimeout),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      ),
+    );
 
-    dio.interceptors.addAll([
-      LoggingInterceptor(),
-      ErrorInterceptor(),
-    ]);
+    dio.interceptors.addAll([LoggingInterceptor(), ErrorInterceptor()]);
 
     return dio;
   }
@@ -147,9 +147,7 @@ class ApiClient {
       final response = await _dio.post<T>(
         path,
         data: formData,
-        options: Options(
-          contentType: 'multipart/form-data',
-        ),
+        options: Options(contentType: 'multipart/form-data'),
       );
       return response.data as T;
     } on DioException catch (e) {

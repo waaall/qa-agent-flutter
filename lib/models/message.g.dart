@@ -9,19 +9,17 @@ part of 'message.dart';
 _$MessageMetadataImpl _$$MessageMetadataImplFromJson(
   Map<String, dynamic> json,
 ) => _$MessageMetadataImpl(
-  queryType: json['queryType'] as String?,
-  enginesUsed: (json['enginesUsed'] as List<dynamic>?)
-      ?.map((e) => e as String)
-      .toList(),
-  confidence: (json['confidence'] as num?)?.toDouble(),
+  enhancementApplied: json['enhancement_applied'] as bool? ?? false,
+  matchedEntries: (json['matched_entries'] as num?)?.toInt() ?? 0,
+  extra: json['extra'] as Map<String, dynamic>? ?? const {},
 );
 
 Map<String, dynamic> _$$MessageMetadataImplToJson(
   _$MessageMetadataImpl instance,
 ) => <String, dynamic>{
-  'queryType': instance.queryType,
-  'enginesUsed': instance.enginesUsed,
-  'confidence': instance.confidence,
+  'enhancement_applied': instance.enhancementApplied,
+  'matched_entries': instance.matchedEntries,
+  'extra': instance.extra,
 };
 
 _$MessageImpl _$$MessageImplFromJson(Map<String, dynamic> json) =>

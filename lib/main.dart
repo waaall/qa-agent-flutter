@@ -9,6 +9,7 @@ import 'app.dart';
 import 'core/storage/local_storage.dart';
 import 'core/storage/session_storage.dart';
 import 'core/storage/config_storage.dart';
+import 'core/storage/report_storage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,11 +20,7 @@ Future<void> main() async {
   // 桌面端窗口配置
   await _initDesktopWindow();
 
-  runApp(
-    const ProviderScope(
-      child: QAAgentApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: QAAgentApp()));
 }
 
 /// 初始化存储
@@ -32,6 +29,7 @@ Future<void> _initStorage() async {
   await LocalStorage.init();
   await SessionStorage.init();
   await ConfigStorage.init();
+  await ReportStorage.init();
 }
 
 /// 初始化桌面窗口

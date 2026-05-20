@@ -9,45 +9,44 @@ part of 'chat_response.dart';
 _$ChatRequestImpl _$$ChatRequestImplFromJson(Map<String, dynamic> json) =>
     _$ChatRequestImpl(
       query: json['query'] as String,
-      sessionId: json['sessionId'] as String?,
+      sessionId: json['session_id'] as String?,
       reset: json['reset'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ChatRequestImplToJson(_$ChatRequestImpl instance) =>
     <String, dynamic>{
       'query': instance.query,
-      'sessionId': instance.sessionId,
+      'session_id': instance.sessionId,
       'reset': instance.reset,
     };
 
 _$ChatResponseImpl _$$ChatResponseImplFromJson(Map<String, dynamic> json) =>
     _$ChatResponseImpl(
+      success: json['success'] as bool,
       answer: json['answer'] as String,
-      sessionId: json['sessionId'] as String,
-      queryType: json['queryType'] as String?,
-      enginesUsed: (json['enginesUsed'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      confidence: (json['confidence'] as num?)?.toDouble(),
-      query: json['query'] as String?,
+      sessionId: json['session_id'] as String,
+      enhancementApplied: json['enhancement_applied'] as bool? ?? false,
+      matchedEntries: (json['matched_entries'] as num?)?.toInt() ?? 0,
+      raw: json['raw'] as String?,
+      error: json['error'] as String?,
     );
 
 Map<String, dynamic> _$$ChatResponseImplToJson(_$ChatResponseImpl instance) =>
     <String, dynamic>{
+      'success': instance.success,
       'answer': instance.answer,
-      'sessionId': instance.sessionId,
-      'queryType': instance.queryType,
-      'enginesUsed': instance.enginesUsed,
-      'confidence': instance.confidence,
-      'query': instance.query,
+      'session_id': instance.sessionId,
+      'enhancement_applied': instance.enhancementApplied,
+      'matched_entries': instance.matchedEntries,
+      'raw': instance.raw,
+      'error': instance.error,
     };
 
 _$HistoryMessageImpl _$$HistoryMessageImplFromJson(Map<String, dynamic> json) =>
     _$HistoryMessageImpl(
       role: json['role'] as String,
       content: json['content'] as String,
-      timestamp: (json['timestamp'] as num).toInt(),
-      additionalKwargs: json['additionalKwargs'] as Map<String, dynamic>?,
+      additionalKwargs: json['additional_kwargs'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$HistoryMessageImplToJson(
@@ -55,14 +54,15 @@ Map<String, dynamic> _$$HistoryMessageImplToJson(
 ) => <String, dynamic>{
   'role': instance.role,
   'content': instance.content,
-  'timestamp': instance.timestamp,
-  'additionalKwargs': instance.additionalKwargs,
+  'additional_kwargs': instance.additionalKwargs,
 };
 
 _$SessionHistoryResponseImpl _$$SessionHistoryResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$SessionHistoryResponseImpl(
-  sessionId: json['sessionId'] as String,
+  success: json['success'] as bool,
+  sessionId: json['session_id'] as String,
+  messageCount: (json['message_count'] as num).toInt(),
   history: (json['history'] as List<dynamic>)
       .map((e) => HistoryMessage.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -71,6 +71,8 @@ _$SessionHistoryResponseImpl _$$SessionHistoryResponseImplFromJson(
 Map<String, dynamic> _$$SessionHistoryResponseImplToJson(
   _$SessionHistoryResponseImpl instance,
 ) => <String, dynamic>{
-  'sessionId': instance.sessionId,
+  'success': instance.success,
+  'session_id': instance.sessionId,
+  'message_count': instance.messageCount,
   'history': instance.history,
 };

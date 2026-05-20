@@ -21,10 +21,12 @@ MessageMetadata _$MessageMetadataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageMetadata {
-  // 查询类型: knowledge | sql | api | general
-  String? get queryType => throw _privateConstructorUsedError; // 使用的引擎列表
-  List<String>? get enginesUsed => throw _privateConstructorUsedError; // 置信度
-  double? get confidence => throw _privateConstructorUsedError;
+  // 知识增强是否生效。
+  @JsonKey(name: 'enhancement_applied')
+  bool get enhancementApplied => throw _privateConstructorUsedError; // 匹配知识条数。
+  @JsonKey(name: 'matched_entries')
+  int get matchedEntries => throw _privateConstructorUsedError; // 后端透传的其它元数据。
+  Map<String, dynamic> get extra => throw _privateConstructorUsedError;
 
   /// Serializes this MessageMetadata to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,7 +45,11 @@ abstract class $MessageMetadataCopyWith<$Res> {
     $Res Function(MessageMetadata) then,
   ) = _$MessageMetadataCopyWithImpl<$Res, MessageMetadata>;
   @useResult
-  $Res call({String? queryType, List<String>? enginesUsed, double? confidence});
+  $Res call({
+    @JsonKey(name: 'enhancement_applied') bool enhancementApplied,
+    @JsonKey(name: 'matched_entries') int matchedEntries,
+    Map<String, dynamic> extra,
+  });
 }
 
 /// @nodoc
@@ -61,24 +67,24 @@ class _$MessageMetadataCopyWithImpl<$Res, $Val extends MessageMetadata>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? queryType = freezed,
-    Object? enginesUsed = freezed,
-    Object? confidence = freezed,
+    Object? enhancementApplied = null,
+    Object? matchedEntries = null,
+    Object? extra = null,
   }) {
     return _then(
       _value.copyWith(
-            queryType: freezed == queryType
-                ? _value.queryType
-                : queryType // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            enginesUsed: freezed == enginesUsed
-                ? _value.enginesUsed
-                : enginesUsed // ignore: cast_nullable_to_non_nullable
-                      as List<String>?,
-            confidence: freezed == confidence
-                ? _value.confidence
-                : confidence // ignore: cast_nullable_to_non_nullable
-                      as double?,
+            enhancementApplied: null == enhancementApplied
+                ? _value.enhancementApplied
+                : enhancementApplied // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            matchedEntries: null == matchedEntries
+                ? _value.matchedEntries
+                : matchedEntries // ignore: cast_nullable_to_non_nullable
+                      as int,
+            extra: null == extra
+                ? _value.extra
+                : extra // ignore: cast_nullable_to_non_nullable
+                      as Map<String, dynamic>,
           )
           as $Val,
     );
@@ -94,7 +100,11 @@ abstract class _$$MessageMetadataImplCopyWith<$Res>
   ) = __$$MessageMetadataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? queryType, List<String>? enginesUsed, double? confidence});
+  $Res call({
+    @JsonKey(name: 'enhancement_applied') bool enhancementApplied,
+    @JsonKey(name: 'matched_entries') int matchedEntries,
+    Map<String, dynamic> extra,
+  });
 }
 
 /// @nodoc
@@ -111,24 +121,24 @@ class __$$MessageMetadataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? queryType = freezed,
-    Object? enginesUsed = freezed,
-    Object? confidence = freezed,
+    Object? enhancementApplied = null,
+    Object? matchedEntries = null,
+    Object? extra = null,
   }) {
     return _then(
       _$MessageMetadataImpl(
-        queryType: freezed == queryType
-            ? _value.queryType
-            : queryType // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        enginesUsed: freezed == enginesUsed
-            ? _value._enginesUsed
-            : enginesUsed // ignore: cast_nullable_to_non_nullable
-                  as List<String>?,
-        confidence: freezed == confidence
-            ? _value.confidence
-            : confidence // ignore: cast_nullable_to_non_nullable
-                  as double?,
+        enhancementApplied: null == enhancementApplied
+            ? _value.enhancementApplied
+            : enhancementApplied // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        matchedEntries: null == matchedEntries
+            ? _value.matchedEntries
+            : matchedEntries // ignore: cast_nullable_to_non_nullable
+                  as int,
+        extra: null == extra
+            ? _value._extra
+            : extra // ignore: cast_nullable_to_non_nullable
+                  as Map<String, dynamic>,
       ),
     );
   }
@@ -138,36 +148,36 @@ class __$$MessageMetadataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MessageMetadataImpl implements _MessageMetadata {
   const _$MessageMetadataImpl({
-    this.queryType,
-    final List<String>? enginesUsed,
-    this.confidence,
-  }) : _enginesUsed = enginesUsed;
+    @JsonKey(name: 'enhancement_applied') this.enhancementApplied = false,
+    @JsonKey(name: 'matched_entries') this.matchedEntries = 0,
+    final Map<String, dynamic> extra = const {},
+  }) : _extra = extra;
 
   factory _$MessageMetadataImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageMetadataImplFromJson(json);
 
-  // 查询类型: knowledge | sql | api | general
+  // 知识增强是否生效。
   @override
-  final String? queryType;
-  // 使用的引擎列表
-  final List<String>? _enginesUsed;
-  // 使用的引擎列表
+  @JsonKey(name: 'enhancement_applied')
+  final bool enhancementApplied;
+  // 匹配知识条数。
   @override
-  List<String>? get enginesUsed {
-    final value = _enginesUsed;
-    if (value == null) return null;
-    if (_enginesUsed is EqualUnmodifiableListView) return _enginesUsed;
+  @JsonKey(name: 'matched_entries')
+  final int matchedEntries;
+  // 后端透传的其它元数据。
+  final Map<String, dynamic> _extra;
+  // 后端透传的其它元数据。
+  @override
+  @JsonKey()
+  Map<String, dynamic> get extra {
+    if (_extra is EqualUnmodifiableMapView) return _extra;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableMapView(_extra);
   }
-
-  // 置信度
-  @override
-  final double? confidence;
 
   @override
   String toString() {
-    return 'MessageMetadata(queryType: $queryType, enginesUsed: $enginesUsed, confidence: $confidence)';
+    return 'MessageMetadata(enhancementApplied: $enhancementApplied, matchedEntries: $matchedEntries, extra: $extra)';
   }
 
   @override
@@ -175,23 +185,20 @@ class _$MessageMetadataImpl implements _MessageMetadata {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageMetadataImpl &&
-            (identical(other.queryType, queryType) ||
-                other.queryType == queryType) &&
-            const DeepCollectionEquality().equals(
-              other._enginesUsed,
-              _enginesUsed,
-            ) &&
-            (identical(other.confidence, confidence) ||
-                other.confidence == confidence));
+            (identical(other.enhancementApplied, enhancementApplied) ||
+                other.enhancementApplied == enhancementApplied) &&
+            (identical(other.matchedEntries, matchedEntries) ||
+                other.matchedEntries == matchedEntries) &&
+            const DeepCollectionEquality().equals(other._extra, _extra));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    queryType,
-    const DeepCollectionEquality().hash(_enginesUsed),
-    confidence,
+    enhancementApplied,
+    matchedEntries,
+    const DeepCollectionEquality().hash(_extra),
   );
 
   /// Create a copy of MessageMetadata
@@ -213,21 +220,23 @@ class _$MessageMetadataImpl implements _MessageMetadata {
 
 abstract class _MessageMetadata implements MessageMetadata {
   const factory _MessageMetadata({
-    final String? queryType,
-    final List<String>? enginesUsed,
-    final double? confidence,
+    @JsonKey(name: 'enhancement_applied') final bool enhancementApplied,
+    @JsonKey(name: 'matched_entries') final int matchedEntries,
+    final Map<String, dynamic> extra,
   }) = _$MessageMetadataImpl;
 
   factory _MessageMetadata.fromJson(Map<String, dynamic> json) =
       _$MessageMetadataImpl.fromJson;
 
-  // 查询类型: knowledge | sql | api | general
+  // 知识增强是否生效。
   @override
-  String? get queryType; // 使用的引擎列表
+  @JsonKey(name: 'enhancement_applied')
+  bool get enhancementApplied; // 匹配知识条数。
   @override
-  List<String>? get enginesUsed; // 置信度
+  @JsonKey(name: 'matched_entries')
+  int get matchedEntries; // 后端透传的其它元数据。
   @override
-  double? get confidence;
+  Map<String, dynamic> get extra;
 
   /// Create a copy of MessageMetadata
   /// with the given fields replaced by the non-null parameter values.
@@ -243,13 +252,13 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Message {
-  // 消息唯一 ID
-  String get id => throw _privateConstructorUsedError; // 角色: user | assistant
-  String get role => throw _privateConstructorUsedError; // 消息内容
-  String get content => throw _privateConstructorUsedError; // 时间戳（毫秒）
-  int get timestamp => throw _privateConstructorUsedError; // 消息元数据
-  MessageMetadata? get metadata => throw _privateConstructorUsedError; // 是否加载中
-  bool get isLoading => throw _privateConstructorUsedError; // 错误信息
+  // 消息唯一 ID。
+  String get id => throw _privateConstructorUsedError; // 角色：user / assistant。
+  String get role => throw _privateConstructorUsedError; // 消息内容。
+  String get content => throw _privateConstructorUsedError; // 时间戳（毫秒）。
+  int get timestamp => throw _privateConstructorUsedError; // 消息元数据。
+  MessageMetadata? get metadata => throw _privateConstructorUsedError; // 是否加载中。
+  bool get isLoading => throw _privateConstructorUsedError; // 错误信息。
   String? get error => throw _privateConstructorUsedError;
 
   /// Serializes this Message to a JSON map.
@@ -447,26 +456,26 @@ class _$MessageImpl implements _Message {
   factory _$MessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageImplFromJson(json);
 
-  // 消息唯一 ID
+  // 消息唯一 ID。
   @override
   final String id;
-  // 角色: user | assistant
+  // 角色：user / assistant。
   @override
   final String role;
-  // 消息内容
+  // 消息内容。
   @override
   final String content;
-  // 时间戳（毫秒）
+  // 时间戳（毫秒）。
   @override
   final int timestamp;
-  // 消息元数据
+  // 消息元数据。
   @override
   final MessageMetadata? metadata;
-  // 是否加载中
+  // 是否加载中。
   @override
   @JsonKey()
   final bool isLoading;
-  // 错误信息
+  // 错误信息。
   @override
   final String? error;
 
@@ -532,19 +541,19 @@ abstract class _Message implements Message {
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$MessageImpl.fromJson;
 
-  // 消息唯一 ID
+  // 消息唯一 ID。
   @override
-  String get id; // 角色: user | assistant
+  String get id; // 角色：user / assistant。
   @override
-  String get role; // 消息内容
+  String get role; // 消息内容。
   @override
-  String get content; // 时间戳（毫秒）
+  String get content; // 时间戳（毫秒）。
   @override
-  int get timestamp; // 消息元数据
+  int get timestamp; // 消息元数据。
   @override
-  MessageMetadata? get metadata; // 是否加载中
+  MessageMetadata? get metadata; // 是否加载中。
   @override
-  bool get isLoading; // 错误信息
+  bool get isLoading; // 错误信息。
   @override
   String? get error;
 

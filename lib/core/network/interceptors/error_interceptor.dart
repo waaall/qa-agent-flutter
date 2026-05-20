@@ -34,7 +34,8 @@ class ErrorInterceptor extends Interceptor {
         // 尝试从响应中提取错误消息
         String? message;
         if (data is Map<String, dynamic>) {
-          message = data['message'] as String? ??
+          message =
+              data['message'] as String? ??
               data['error'] as String? ??
               data['detail'] as String?;
         }
@@ -51,7 +52,6 @@ class ErrorInterceptor extends Interceptor {
         return ApiException(message: '证书验证失败');
 
       case DioExceptionType.unknown:
-      default:
         if (err.error is ApiException) {
           return err.error as ApiException;
         }

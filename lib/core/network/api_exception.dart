@@ -4,11 +4,7 @@ class ApiException implements Exception {
   final int? statusCode;
   final dynamic data;
 
-  ApiException({
-    required this.message,
-    this.statusCode,
-    this.data,
-  });
+  ApiException({required this.message, this.statusCode, this.data});
 
   @override
   String toString() => 'ApiException: $message (statusCode: $statusCode)';
@@ -43,20 +39,16 @@ class ApiException implements Exception {
 /// 网络异常
 class NetworkException extends ApiException {
   NetworkException({String? message})
-      : super(message: message ?? '网络连接失败，请检查网络设置');
+    : super(message: message ?? '网络连接失败，请检查网络设置');
 }
 
 /// 超时异常
 class TimeoutException extends ApiException {
-  TimeoutException({String? message})
-      : super(message: message ?? '请求超时，请稍后重试');
+  TimeoutException({String? message}) : super(message: message ?? '请求超时，请稍后重试');
 }
 
 /// 服务器异常
 class ServerException extends ApiException {
-  ServerException({String? message, int? statusCode})
-      : super(
-          message: message ?? '服务器错误',
-          statusCode: statusCode,
-        );
+  ServerException({String? message, super.statusCode})
+    : super(message: message ?? '服务器错误');
 }

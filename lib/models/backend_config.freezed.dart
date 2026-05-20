@@ -21,12 +21,13 @@ STTConfig _$STTConfigFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$STTConfig {
-  // STT 服务地址
-  String get baseUrl => throw _privateConstructorUsedError; // ASR 端点
-  String get endpoint => throw _privateConstructorUsedError; // 语言
-  String get language => throw _privateConstructorUsedError; // 是否启用 VAD 过滤
-  bool get vadFilter => throw _privateConstructorUsedError; // 最大录音时长（毫秒）
-  int get maxDurationMs => throw _privateConstructorUsedError; // 最大音频大小（字节）
+  // STT 服务根地址。
+  String get baseUrl => throw _privateConstructorUsedError; // ASR 端点。
+  String get endpoint => throw _privateConstructorUsedError; // 语言。
+  String get language => throw _privateConstructorUsedError; // 是否启用 VAD 过滤。
+  bool get vadFilter => throw _privateConstructorUsedError; // 是否返回词级时间戳。
+  bool get wordTimestamps => throw _privateConstructorUsedError; // 最大录音时长（毫秒）。
+  int get maxDurationMs => throw _privateConstructorUsedError; // 最大音频大小（字节）。
   int get maxSizeBytes => throw _privateConstructorUsedError;
 
   /// Serializes this STTConfig to a JSON map.
@@ -49,6 +50,7 @@ abstract class $STTConfigCopyWith<$Res> {
     String endpoint,
     String language,
     bool vadFilter,
+    bool wordTimestamps,
     int maxDurationMs,
     int maxSizeBytes,
   });
@@ -73,6 +75,7 @@ class _$STTConfigCopyWithImpl<$Res, $Val extends STTConfig>
     Object? endpoint = null,
     Object? language = null,
     Object? vadFilter = null,
+    Object? wordTimestamps = null,
     Object? maxDurationMs = null,
     Object? maxSizeBytes = null,
   }) {
@@ -93,6 +96,10 @@ class _$STTConfigCopyWithImpl<$Res, $Val extends STTConfig>
             vadFilter: null == vadFilter
                 ? _value.vadFilter
                 : vadFilter // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            wordTimestamps: null == wordTimestamps
+                ? _value.wordTimestamps
+                : wordTimestamps // ignore: cast_nullable_to_non_nullable
                       as bool,
             maxDurationMs: null == maxDurationMs
                 ? _value.maxDurationMs
@@ -122,6 +129,7 @@ abstract class _$$STTConfigImplCopyWith<$Res>
     String endpoint,
     String language,
     bool vadFilter,
+    bool wordTimestamps,
     int maxDurationMs,
     int maxSizeBytes,
   });
@@ -145,6 +153,7 @@ class __$$STTConfigImplCopyWithImpl<$Res>
     Object? endpoint = null,
     Object? language = null,
     Object? vadFilter = null,
+    Object? wordTimestamps = null,
     Object? maxDurationMs = null,
     Object? maxSizeBytes = null,
   }) {
@@ -165,6 +174,10 @@ class __$$STTConfigImplCopyWithImpl<$Res>
         vadFilter: null == vadFilter
             ? _value.vadFilter
             : vadFilter // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        wordTimestamps: null == wordTimestamps
+            ? _value.wordTimestamps
+            : wordTimestamps // ignore: cast_nullable_to_non_nullable
                   as bool,
         maxDurationMs: null == maxDurationMs
             ? _value.maxDurationMs
@@ -187,41 +200,46 @@ class _$STTConfigImpl implements _STTConfig {
     this.endpoint = '/asr',
     this.language = 'zh',
     this.vadFilter = true,
-    this.maxDurationMs = 60000,
-    this.maxSizeBytes = 10485760,
+    this.wordTimestamps = true,
+    this.maxDurationMs = AppConfig.maxRecordDuration,
+    this.maxSizeBytes = AppConfig.maxAudioSize,
   });
 
   factory _$STTConfigImpl.fromJson(Map<String, dynamic> json) =>
       _$$STTConfigImplFromJson(json);
 
-  // STT 服务地址
+  // STT 服务根地址。
   @override
   @JsonKey()
   final String baseUrl;
-  // ASR 端点
+  // ASR 端点。
   @override
   @JsonKey()
   final String endpoint;
-  // 语言
+  // 语言。
   @override
   @JsonKey()
   final String language;
-  // 是否启用 VAD 过滤
+  // 是否启用 VAD 过滤。
   @override
   @JsonKey()
   final bool vadFilter;
-  // 最大录音时长（毫秒）
+  // 是否返回词级时间戳。
+  @override
+  @JsonKey()
+  final bool wordTimestamps;
+  // 最大录音时长（毫秒）。
   @override
   @JsonKey()
   final int maxDurationMs;
-  // 最大音频大小（字节）
+  // 最大音频大小（字节）。
   @override
   @JsonKey()
   final int maxSizeBytes;
 
   @override
   String toString() {
-    return 'STTConfig(baseUrl: $baseUrl, endpoint: $endpoint, language: $language, vadFilter: $vadFilter, maxDurationMs: $maxDurationMs, maxSizeBytes: $maxSizeBytes)';
+    return 'STTConfig(baseUrl: $baseUrl, endpoint: $endpoint, language: $language, vadFilter: $vadFilter, wordTimestamps: $wordTimestamps, maxDurationMs: $maxDurationMs, maxSizeBytes: $maxSizeBytes)';
   }
 
   @override
@@ -236,6 +254,8 @@ class _$STTConfigImpl implements _STTConfig {
                 other.language == language) &&
             (identical(other.vadFilter, vadFilter) ||
                 other.vadFilter == vadFilter) &&
+            (identical(other.wordTimestamps, wordTimestamps) ||
+                other.wordTimestamps == wordTimestamps) &&
             (identical(other.maxDurationMs, maxDurationMs) ||
                 other.maxDurationMs == maxDurationMs) &&
             (identical(other.maxSizeBytes, maxSizeBytes) ||
@@ -250,6 +270,7 @@ class _$STTConfigImpl implements _STTConfig {
     endpoint,
     language,
     vadFilter,
+    wordTimestamps,
     maxDurationMs,
     maxSizeBytes,
   );
@@ -274,6 +295,7 @@ abstract class _STTConfig implements STTConfig {
     final String endpoint,
     final String language,
     final bool vadFilter,
+    final bool wordTimestamps,
     final int maxDurationMs,
     final int maxSizeBytes,
   }) = _$STTConfigImpl;
@@ -281,17 +303,19 @@ abstract class _STTConfig implements STTConfig {
   factory _STTConfig.fromJson(Map<String, dynamic> json) =
       _$STTConfigImpl.fromJson;
 
-  // STT 服务地址
+  // STT 服务根地址。
   @override
-  String get baseUrl; // ASR 端点
+  String get baseUrl; // ASR 端点。
   @override
-  String get endpoint; // 语言
+  String get endpoint; // 语言。
   @override
-  String get language; // 是否启用 VAD 过滤
+  String get language; // 是否启用 VAD 过滤。
   @override
-  bool get vadFilter; // 最大录音时长（毫秒）
+  bool get vadFilter; // 是否返回词级时间戳。
   @override
-  int get maxDurationMs; // 最大音频大小（字节）
+  bool get wordTimestamps; // 最大录音时长（毫秒）。
+  @override
+  int get maxDurationMs; // 最大音频大小（字节）。
   @override
   int get maxSizeBytes;
 
@@ -303,15 +327,190 @@ abstract class _STTConfig implements STTConfig {
       throw _privateConstructorUsedError;
 }
 
+TTSConfig _$TTSConfigFromJson(Map<String, dynamic> json) {
+  return _TTSConfig.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TTSConfig {
+  // TTS 服务根地址或完整 speech 接口地址。
+  String get baseUrl =>
+      throw _privateConstructorUsedError; // 预留可配置声音，首版默认 zf_094。
+  String get voice => throw _privateConstructorUsedError;
+
+  /// Serializes this TTSConfig to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of TTSConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TTSConfigCopyWith<TTSConfig> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TTSConfigCopyWith<$Res> {
+  factory $TTSConfigCopyWith(TTSConfig value, $Res Function(TTSConfig) then) =
+      _$TTSConfigCopyWithImpl<$Res, TTSConfig>;
+  @useResult
+  $Res call({String baseUrl, String voice});
+}
+
+/// @nodoc
+class _$TTSConfigCopyWithImpl<$Res, $Val extends TTSConfig>
+    implements $TTSConfigCopyWith<$Res> {
+  _$TTSConfigCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TTSConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? baseUrl = null, Object? voice = null}) {
+    return _then(
+      _value.copyWith(
+            baseUrl: null == baseUrl
+                ? _value.baseUrl
+                : baseUrl // ignore: cast_nullable_to_non_nullable
+                      as String,
+            voice: null == voice
+                ? _value.voice
+                : voice // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$TTSConfigImplCopyWith<$Res>
+    implements $TTSConfigCopyWith<$Res> {
+  factory _$$TTSConfigImplCopyWith(
+    _$TTSConfigImpl value,
+    $Res Function(_$TTSConfigImpl) then,
+  ) = __$$TTSConfigImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String baseUrl, String voice});
+}
+
+/// @nodoc
+class __$$TTSConfigImplCopyWithImpl<$Res>
+    extends _$TTSConfigCopyWithImpl<$Res, _$TTSConfigImpl>
+    implements _$$TTSConfigImplCopyWith<$Res> {
+  __$$TTSConfigImplCopyWithImpl(
+    _$TTSConfigImpl _value,
+    $Res Function(_$TTSConfigImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of TTSConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? baseUrl = null, Object? voice = null}) {
+    return _then(
+      _$TTSConfigImpl(
+        baseUrl: null == baseUrl
+            ? _value.baseUrl
+            : baseUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        voice: null == voice
+            ? _value.voice
+            : voice // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TTSConfigImpl implements _TTSConfig {
+  const _$TTSConfigImpl({
+    this.baseUrl = AppConfig.defaultTtsBaseUrl,
+    this.voice = AppConfig.defaultTtsVoice,
+  });
+
+  factory _$TTSConfigImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TTSConfigImplFromJson(json);
+
+  // TTS 服务根地址或完整 speech 接口地址。
+  @override
+  @JsonKey()
+  final String baseUrl;
+  // 预留可配置声音，首版默认 zf_094。
+  @override
+  @JsonKey()
+  final String voice;
+
+  @override
+  String toString() {
+    return 'TTSConfig(baseUrl: $baseUrl, voice: $voice)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TTSConfigImpl &&
+            (identical(other.baseUrl, baseUrl) || other.baseUrl == baseUrl) &&
+            (identical(other.voice, voice) || other.voice == voice));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, baseUrl, voice);
+
+  /// Create a copy of TTSConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TTSConfigImplCopyWith<_$TTSConfigImpl> get copyWith =>
+      __$$TTSConfigImplCopyWithImpl<_$TTSConfigImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TTSConfigImplToJson(this);
+  }
+}
+
+abstract class _TTSConfig implements TTSConfig {
+  const factory _TTSConfig({final String baseUrl, final String voice}) =
+      _$TTSConfigImpl;
+
+  factory _TTSConfig.fromJson(Map<String, dynamic> json) =
+      _$TTSConfigImpl.fromJson;
+
+  // TTS 服务根地址或完整 speech 接口地址。
+  @override
+  String get baseUrl; // 预留可配置声音，首版默认 zf_094。
+  @override
+  String get voice;
+
+  /// Create a copy of TTSConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TTSConfigImplCopyWith<_$TTSConfigImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 BackendConfig _$BackendConfigFromJson(Map<String, dynamic> json) {
   return _BackendConfig.fromJson(json);
 }
 
 /// @nodoc
 mixin _$BackendConfig {
-  // API 后端地址
-  String get apiBaseUrl => throw _privateConstructorUsedError; // STT 配置
-  STTConfig? get sttConfig => throw _privateConstructorUsedError;
+  // Agent 后端地址，用于对话、报告、系统状态、索引更新。
+  String get agentBaseUrl => throw _privateConstructorUsedError; // STT 配置。
+  STTConfig get sttConfig => throw _privateConstructorUsedError; // TTS 配置。
+  TTSConfig get ttsConfig => throw _privateConstructorUsedError;
 
   /// Serializes this BackendConfig to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -330,9 +529,10 @@ abstract class $BackendConfigCopyWith<$Res> {
     $Res Function(BackendConfig) then,
   ) = _$BackendConfigCopyWithImpl<$Res, BackendConfig>;
   @useResult
-  $Res call({String apiBaseUrl, STTConfig? sttConfig});
+  $Res call({String agentBaseUrl, STTConfig sttConfig, TTSConfig ttsConfig});
 
-  $STTConfigCopyWith<$Res>? get sttConfig;
+  $STTConfigCopyWith<$Res> get sttConfig;
+  $TTSConfigCopyWith<$Res> get ttsConfig;
 }
 
 /// @nodoc
@@ -349,17 +549,25 @@ class _$BackendConfigCopyWithImpl<$Res, $Val extends BackendConfig>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? apiBaseUrl = null, Object? sttConfig = freezed}) {
+  $Res call({
+    Object? agentBaseUrl = null,
+    Object? sttConfig = null,
+    Object? ttsConfig = null,
+  }) {
     return _then(
       _value.copyWith(
-            apiBaseUrl: null == apiBaseUrl
-                ? _value.apiBaseUrl
-                : apiBaseUrl // ignore: cast_nullable_to_non_nullable
+            agentBaseUrl: null == agentBaseUrl
+                ? _value.agentBaseUrl
+                : agentBaseUrl // ignore: cast_nullable_to_non_nullable
                       as String,
-            sttConfig: freezed == sttConfig
+            sttConfig: null == sttConfig
                 ? _value.sttConfig
                 : sttConfig // ignore: cast_nullable_to_non_nullable
-                      as STTConfig?,
+                      as STTConfig,
+            ttsConfig: null == ttsConfig
+                ? _value.ttsConfig
+                : ttsConfig // ignore: cast_nullable_to_non_nullable
+                      as TTSConfig,
           )
           as $Val,
     );
@@ -369,13 +577,19 @@ class _$BackendConfigCopyWithImpl<$Res, $Val extends BackendConfig>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $STTConfigCopyWith<$Res>? get sttConfig {
-    if (_value.sttConfig == null) {
-      return null;
-    }
-
-    return $STTConfigCopyWith<$Res>(_value.sttConfig!, (value) {
+  $STTConfigCopyWith<$Res> get sttConfig {
+    return $STTConfigCopyWith<$Res>(_value.sttConfig, (value) {
       return _then(_value.copyWith(sttConfig: value) as $Val);
+    });
+  }
+
+  /// Create a copy of BackendConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TTSConfigCopyWith<$Res> get ttsConfig {
+    return $TTSConfigCopyWith<$Res>(_value.ttsConfig, (value) {
+      return _then(_value.copyWith(ttsConfig: value) as $Val);
     });
   }
 }
@@ -389,10 +603,12 @@ abstract class _$$BackendConfigImplCopyWith<$Res>
   ) = __$$BackendConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String apiBaseUrl, STTConfig? sttConfig});
+  $Res call({String agentBaseUrl, STTConfig sttConfig, TTSConfig ttsConfig});
 
   @override
-  $STTConfigCopyWith<$Res>? get sttConfig;
+  $STTConfigCopyWith<$Res> get sttConfig;
+  @override
+  $TTSConfigCopyWith<$Res> get ttsConfig;
 }
 
 /// @nodoc
@@ -408,17 +624,25 @@ class __$$BackendConfigImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? apiBaseUrl = null, Object? sttConfig = freezed}) {
+  $Res call({
+    Object? agentBaseUrl = null,
+    Object? sttConfig = null,
+    Object? ttsConfig = null,
+  }) {
     return _then(
       _$BackendConfigImpl(
-        apiBaseUrl: null == apiBaseUrl
-            ? _value.apiBaseUrl
-            : apiBaseUrl // ignore: cast_nullable_to_non_nullable
+        agentBaseUrl: null == agentBaseUrl
+            ? _value.agentBaseUrl
+            : agentBaseUrl // ignore: cast_nullable_to_non_nullable
                   as String,
-        sttConfig: freezed == sttConfig
+        sttConfig: null == sttConfig
             ? _value.sttConfig
             : sttConfig // ignore: cast_nullable_to_non_nullable
-                  as STTConfig?,
+                  as STTConfig,
+        ttsConfig: null == ttsConfig
+            ? _value.ttsConfig
+            : ttsConfig // ignore: cast_nullable_to_non_nullable
+                  as TTSConfig,
       ),
     );
   }
@@ -427,21 +651,31 @@ class __$$BackendConfigImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BackendConfigImpl implements _BackendConfig {
-  const _$BackendConfigImpl({required this.apiBaseUrl, this.sttConfig});
+  const _$BackendConfigImpl({
+    this.agentBaseUrl = AppConfig.defaultAgentBaseUrl,
+    this.sttConfig = const STTConfig(),
+    this.ttsConfig = const TTSConfig(),
+  });
 
   factory _$BackendConfigImpl.fromJson(Map<String, dynamic> json) =>
       _$$BackendConfigImplFromJson(json);
 
-  // API 后端地址
+  // Agent 后端地址，用于对话、报告、系统状态、索引更新。
   @override
-  final String apiBaseUrl;
-  // STT 配置
+  @JsonKey()
+  final String agentBaseUrl;
+  // STT 配置。
   @override
-  final STTConfig? sttConfig;
+  @JsonKey()
+  final STTConfig sttConfig;
+  // TTS 配置。
+  @override
+  @JsonKey()
+  final TTSConfig ttsConfig;
 
   @override
   String toString() {
-    return 'BackendConfig(apiBaseUrl: $apiBaseUrl, sttConfig: $sttConfig)';
+    return 'BackendConfig(agentBaseUrl: $agentBaseUrl, sttConfig: $sttConfig, ttsConfig: $ttsConfig)';
   }
 
   @override
@@ -449,15 +683,18 @@ class _$BackendConfigImpl implements _BackendConfig {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BackendConfigImpl &&
-            (identical(other.apiBaseUrl, apiBaseUrl) ||
-                other.apiBaseUrl == apiBaseUrl) &&
+            (identical(other.agentBaseUrl, agentBaseUrl) ||
+                other.agentBaseUrl == agentBaseUrl) &&
             (identical(other.sttConfig, sttConfig) ||
-                other.sttConfig == sttConfig));
+                other.sttConfig == sttConfig) &&
+            (identical(other.ttsConfig, ttsConfig) ||
+                other.ttsConfig == ttsConfig));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, apiBaseUrl, sttConfig);
+  int get hashCode =>
+      Object.hash(runtimeType, agentBaseUrl, sttConfig, ttsConfig);
 
   /// Create a copy of BackendConfig
   /// with the given fields replaced by the non-null parameter values.
@@ -475,18 +712,21 @@ class _$BackendConfigImpl implements _BackendConfig {
 
 abstract class _BackendConfig implements BackendConfig {
   const factory _BackendConfig({
-    required final String apiBaseUrl,
-    final STTConfig? sttConfig,
+    final String agentBaseUrl,
+    final STTConfig sttConfig,
+    final TTSConfig ttsConfig,
   }) = _$BackendConfigImpl;
 
   factory _BackendConfig.fromJson(Map<String, dynamic> json) =
       _$BackendConfigImpl.fromJson;
 
-  // API 后端地址
+  // Agent 后端地址，用于对话、报告、系统状态、索引更新。
   @override
-  String get apiBaseUrl; // STT 配置
+  String get agentBaseUrl; // STT 配置。
   @override
-  STTConfig? get sttConfig;
+  STTConfig get sttConfig; // TTS 配置。
+  @override
+  TTSConfig get ttsConfig;
 
   /// Create a copy of BackendConfig
   /// with the given fields replaced by the non-null parameter values.

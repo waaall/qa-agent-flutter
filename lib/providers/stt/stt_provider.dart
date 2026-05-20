@@ -39,16 +39,14 @@ class STTNotifier extends StateNotifier<STTState> {
     try {
       // 检查权限
       if (!await _recorder.hasPermission()) {
-        state = state.copyWith(
-          state: RecorderState.error,
-          error: '需要麦克风权限',
-        );
+        state = state.copyWith(state: RecorderState.error, error: '需要麦克风权限');
         return;
       }
 
       // 获取临时文件路径
       final tempDir = await getTemporaryDirectory();
-      _tempFilePath = '${tempDir.path}/stt_recording_${DateTime.now().millisecondsSinceEpoch}.wav';
+      _tempFilePath =
+          '${tempDir.path}/stt_recording_${DateTime.now().millisecondsSinceEpoch}.wav';
 
       // 开始录音
       await _recorder.start(
@@ -75,10 +73,7 @@ class STTNotifier extends StateNotifier<STTState> {
       Logger.debug('开始录音: $_tempFilePath');
     } catch (e) {
       Logger.error('开始录音失败', e);
-      state = state.copyWith(
-        state: RecorderState.error,
-        error: '录音启动失败: $e',
-      );
+      state = state.copyWith(state: RecorderState.error, error: '录音启动失败: $e');
     }
   }
 
@@ -115,24 +110,19 @@ class STTNotifier extends StateNotifier<STTState> {
 
       // 转写
       state = state.copyWith(state: RecorderState.transcribing);
-      final result = await _sttService.transcribe(wavData: Uint8List.fromList(wavData));
+      final result = await _sttService.transcribe(
+        wavData: Uint8List.fromList(wavData),
+      );
 
       // 更新状态
-      state = state.copyWith(
-        state: RecorderState.success,
-        text: result.text,
-      );
+      state = state.copyWith(state: RecorderState.success, text: result.text);
 
       // 清理临时文件
       await audioFile.delete();
       _tempFilePath = null;
-
     } catch (e) {
       Logger.error('转写失败', e);
-      state = state.copyWith(
-        state: RecorderState.error,
-        error: e.toString(),
-      );
+      state = state.copyWith(state: RecorderState.error, error: e.toString());
     }
   }
 
@@ -161,10 +151,7 @@ class STTNotifier extends StateNotifier<STTState> {
   /// 重试转写
   Future<void> retryTranscribe() async {
     if (_tempFilePath == null) {
-      state = state.copyWith(
-        state: RecorderState.error,
-        error: '没有可重试的录音',
-      );
+      state = state.copyWith(state: RecorderState.error, error: '没有可重试的录音');
       return;
     }
 
@@ -177,22 +164,17 @@ class STTNotifier extends StateNotifier<STTState> {
       }
 
       final wavData = await audioFile.readAsBytes();
-      final result = await _sttService.transcribe(wavData: Uint8List.fromList(wavData));
-
-      state = state.copyWith(
-        state: RecorderState.success,
-        text: result.text,
+      final result = await _sttService.transcribe(
+        wavData: Uint8List.fromList(wavData),
       );
+
+      state = state.copyWith(state: RecorderState.success, text: result.text);
 
       // 清理
       await audioFile.delete();
       _tempFilePath = null;
-
     } catch (e) {
-      state = state.copyWith(
-        state: RecorderState.error,
-        error: e.toString(),
-      );
+      state = state.copyWith(state: RecorderState.error, error: e.toString());
     }
   }
 

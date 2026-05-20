@@ -15,6 +15,254 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
+LlmHealthInfo _$LlmHealthInfoFromJson(Map<String, dynamic> json) {
+  return _LlmHealthInfo.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LlmHealthInfo {
+  String? get provider => throw _privateConstructorUsedError;
+  bool get ready => throw _privateConstructorUsedError;
+  @JsonKey(name: 'current_model')
+  String? get currentModel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_budget')
+  Map<String, dynamic>? get tokenBudget => throw _privateConstructorUsedError;
+
+  /// Serializes this LlmHealthInfo to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LlmHealthInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LlmHealthInfoCopyWith<LlmHealthInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LlmHealthInfoCopyWith<$Res> {
+  factory $LlmHealthInfoCopyWith(
+    LlmHealthInfo value,
+    $Res Function(LlmHealthInfo) then,
+  ) = _$LlmHealthInfoCopyWithImpl<$Res, LlmHealthInfo>;
+  @useResult
+  $Res call({
+    String? provider,
+    bool ready,
+    @JsonKey(name: 'current_model') String? currentModel,
+    @JsonKey(name: 'token_budget') Map<String, dynamic>? tokenBudget,
+  });
+}
+
+/// @nodoc
+class _$LlmHealthInfoCopyWithImpl<$Res, $Val extends LlmHealthInfo>
+    implements $LlmHealthInfoCopyWith<$Res> {
+  _$LlmHealthInfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LlmHealthInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? provider = freezed,
+    Object? ready = null,
+    Object? currentModel = freezed,
+    Object? tokenBudget = freezed,
+  }) {
+    return _then(
+      _value.copyWith(
+            provider: freezed == provider
+                ? _value.provider
+                : provider // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            ready: null == ready
+                ? _value.ready
+                : ready // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            currentModel: freezed == currentModel
+                ? _value.currentModel
+                : currentModel // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            tokenBudget: freezed == tokenBudget
+                ? _value.tokenBudget
+                : tokenBudget // ignore: cast_nullable_to_non_nullable
+                      as Map<String, dynamic>?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$LlmHealthInfoImplCopyWith<$Res>
+    implements $LlmHealthInfoCopyWith<$Res> {
+  factory _$$LlmHealthInfoImplCopyWith(
+    _$LlmHealthInfoImpl value,
+    $Res Function(_$LlmHealthInfoImpl) then,
+  ) = __$$LlmHealthInfoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    String? provider,
+    bool ready,
+    @JsonKey(name: 'current_model') String? currentModel,
+    @JsonKey(name: 'token_budget') Map<String, dynamic>? tokenBudget,
+  });
+}
+
+/// @nodoc
+class __$$LlmHealthInfoImplCopyWithImpl<$Res>
+    extends _$LlmHealthInfoCopyWithImpl<$Res, _$LlmHealthInfoImpl>
+    implements _$$LlmHealthInfoImplCopyWith<$Res> {
+  __$$LlmHealthInfoImplCopyWithImpl(
+    _$LlmHealthInfoImpl _value,
+    $Res Function(_$LlmHealthInfoImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LlmHealthInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? provider = freezed,
+    Object? ready = null,
+    Object? currentModel = freezed,
+    Object? tokenBudget = freezed,
+  }) {
+    return _then(
+      _$LlmHealthInfoImpl(
+        provider: freezed == provider
+            ? _value.provider
+            : provider // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        ready: null == ready
+            ? _value.ready
+            : ready // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        currentModel: freezed == currentModel
+            ? _value.currentModel
+            : currentModel // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        tokenBudget: freezed == tokenBudget
+            ? _value._tokenBudget
+            : tokenBudget // ignore: cast_nullable_to_non_nullable
+                  as Map<String, dynamic>?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LlmHealthInfoImpl implements _LlmHealthInfo {
+  const _$LlmHealthInfoImpl({
+    this.provider,
+    this.ready = false,
+    @JsonKey(name: 'current_model') this.currentModel,
+    @JsonKey(name: 'token_budget') final Map<String, dynamic>? tokenBudget,
+  }) : _tokenBudget = tokenBudget;
+
+  factory _$LlmHealthInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LlmHealthInfoImplFromJson(json);
+
+  @override
+  final String? provider;
+  @override
+  @JsonKey()
+  final bool ready;
+  @override
+  @JsonKey(name: 'current_model')
+  final String? currentModel;
+  final Map<String, dynamic>? _tokenBudget;
+  @override
+  @JsonKey(name: 'token_budget')
+  Map<String, dynamic>? get tokenBudget {
+    final value = _tokenBudget;
+    if (value == null) return null;
+    if (_tokenBudget is EqualUnmodifiableMapView) return _tokenBudget;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'LlmHealthInfo(provider: $provider, ready: $ready, currentModel: $currentModel, tokenBudget: $tokenBudget)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LlmHealthInfoImpl &&
+            (identical(other.provider, provider) ||
+                other.provider == provider) &&
+            (identical(other.ready, ready) || other.ready == ready) &&
+            (identical(other.currentModel, currentModel) ||
+                other.currentModel == currentModel) &&
+            const DeepCollectionEquality().equals(
+              other._tokenBudget,
+              _tokenBudget,
+            ));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+    runtimeType,
+    provider,
+    ready,
+    currentModel,
+    const DeepCollectionEquality().hash(_tokenBudget),
+  );
+
+  /// Create a copy of LlmHealthInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LlmHealthInfoImplCopyWith<_$LlmHealthInfoImpl> get copyWith =>
+      __$$LlmHealthInfoImplCopyWithImpl<_$LlmHealthInfoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LlmHealthInfoImplToJson(this);
+  }
+}
+
+abstract class _LlmHealthInfo implements LlmHealthInfo {
+  const factory _LlmHealthInfo({
+    final String? provider,
+    final bool ready,
+    @JsonKey(name: 'current_model') final String? currentModel,
+    @JsonKey(name: 'token_budget') final Map<String, dynamic>? tokenBudget,
+  }) = _$LlmHealthInfoImpl;
+
+  factory _LlmHealthInfo.fromJson(Map<String, dynamic> json) =
+      _$LlmHealthInfoImpl.fromJson;
+
+  @override
+  String? get provider;
+  @override
+  bool get ready;
+  @override
+  @JsonKey(name: 'current_model')
+  String? get currentModel;
+  @override
+  @JsonKey(name: 'token_budget')
+  Map<String, dynamic>? get tokenBudget;
+
+  /// Create a copy of LlmHealthInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LlmHealthInfoImplCopyWith<_$LlmHealthInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 HealthResponse _$HealthResponseFromJson(Map<String, dynamic> json) {
   return _HealthResponse.fromJson(json);
 }
@@ -22,7 +270,14 @@ HealthResponse _$HealthResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$HealthResponse {
   String get status => throw _privateConstructorUsedError;
+  String? get framework => throw _privateConstructorUsedError;
   String? get version => throw _privateConstructorUsedError;
+  LlmHealthInfo? get llm => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get ollama => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get openai => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get observability => throw _privateConstructorUsedError;
+  String? get timestamp => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
 
   /// Serializes this HealthResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +296,19 @@ abstract class $HealthResponseCopyWith<$Res> {
     $Res Function(HealthResponse) then,
   ) = _$HealthResponseCopyWithImpl<$Res, HealthResponse>;
   @useResult
-  $Res call({String status, String? version});
+  $Res call({
+    String status,
+    String? framework,
+    String? version,
+    LlmHealthInfo? llm,
+    Map<String, dynamic>? ollama,
+    Map<String, dynamic>? openai,
+    Map<String, dynamic>? observability,
+    String? timestamp,
+    String? error,
+  });
+
+  $LlmHealthInfoCopyWith<$Res>? get llm;
 }
 
 /// @nodoc
@@ -58,20 +325,72 @@ class _$HealthResponseCopyWithImpl<$Res, $Val extends HealthResponse>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? version = freezed}) {
+  $Res call({
+    Object? status = null,
+    Object? framework = freezed,
+    Object? version = freezed,
+    Object? llm = freezed,
+    Object? ollama = freezed,
+    Object? openai = freezed,
+    Object? observability = freezed,
+    Object? timestamp = freezed,
+    Object? error = freezed,
+  }) {
     return _then(
       _value.copyWith(
             status: null == status
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                       as String,
+            framework: freezed == framework
+                ? _value.framework
+                : framework // ignore: cast_nullable_to_non_nullable
+                      as String?,
             version: freezed == version
                 ? _value.version
                 : version // ignore: cast_nullable_to_non_nullable
                       as String?,
+            llm: freezed == llm
+                ? _value.llm
+                : llm // ignore: cast_nullable_to_non_nullable
+                      as LlmHealthInfo?,
+            ollama: freezed == ollama
+                ? _value.ollama
+                : ollama // ignore: cast_nullable_to_non_nullable
+                      as Map<String, dynamic>?,
+            openai: freezed == openai
+                ? _value.openai
+                : openai // ignore: cast_nullable_to_non_nullable
+                      as Map<String, dynamic>?,
+            observability: freezed == observability
+                ? _value.observability
+                : observability // ignore: cast_nullable_to_non_nullable
+                      as Map<String, dynamic>?,
+            timestamp: freezed == timestamp
+                ? _value.timestamp
+                : timestamp // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            error: freezed == error
+                ? _value.error
+                : error // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of HealthResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LlmHealthInfoCopyWith<$Res>? get llm {
+    if (_value.llm == null) {
+      return null;
+    }
+
+    return $LlmHealthInfoCopyWith<$Res>(_value.llm!, (value) {
+      return _then(_value.copyWith(llm: value) as $Val);
+    });
   }
 }
 
@@ -84,7 +403,20 @@ abstract class _$$HealthResponseImplCopyWith<$Res>
   ) = __$$HealthResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String status, String? version});
+  $Res call({
+    String status,
+    String? framework,
+    String? version,
+    LlmHealthInfo? llm,
+    Map<String, dynamic>? ollama,
+    Map<String, dynamic>? openai,
+    Map<String, dynamic>? observability,
+    String? timestamp,
+    String? error,
+  });
+
+  @override
+  $LlmHealthInfoCopyWith<$Res>? get llm;
 }
 
 /// @nodoc
@@ -100,16 +432,54 @@ class __$$HealthResponseImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? status = null, Object? version = freezed}) {
+  $Res call({
+    Object? status = null,
+    Object? framework = freezed,
+    Object? version = freezed,
+    Object? llm = freezed,
+    Object? ollama = freezed,
+    Object? openai = freezed,
+    Object? observability = freezed,
+    Object? timestamp = freezed,
+    Object? error = freezed,
+  }) {
     return _then(
       _$HealthResponseImpl(
         status: null == status
             ? _value.status
             : status // ignore: cast_nullable_to_non_nullable
                   as String,
+        framework: freezed == framework
+            ? _value.framework
+            : framework // ignore: cast_nullable_to_non_nullable
+                  as String?,
         version: freezed == version
             ? _value.version
             : version // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        llm: freezed == llm
+            ? _value.llm
+            : llm // ignore: cast_nullable_to_non_nullable
+                  as LlmHealthInfo?,
+        ollama: freezed == ollama
+            ? _value._ollama
+            : ollama // ignore: cast_nullable_to_non_nullable
+                  as Map<String, dynamic>?,
+        openai: freezed == openai
+            ? _value._openai
+            : openai // ignore: cast_nullable_to_non_nullable
+                  as Map<String, dynamic>?,
+        observability: freezed == observability
+            ? _value._observability
+            : observability // ignore: cast_nullable_to_non_nullable
+                  as Map<String, dynamic>?,
+        timestamp: freezed == timestamp
+            ? _value.timestamp
+            : timestamp // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        error: freezed == error
+            ? _value.error
+            : error // ignore: cast_nullable_to_non_nullable
                   as String?,
       ),
     );
@@ -119,7 +489,19 @@ class __$$HealthResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HealthResponseImpl implements _HealthResponse {
-  const _$HealthResponseImpl({required this.status, this.version});
+  const _$HealthResponseImpl({
+    required this.status,
+    this.framework,
+    this.version,
+    this.llm,
+    final Map<String, dynamic>? ollama,
+    final Map<String, dynamic>? openai,
+    final Map<String, dynamic>? observability,
+    this.timestamp,
+    this.error,
+  }) : _ollama = ollama,
+       _openai = openai,
+       _observability = observability;
 
   factory _$HealthResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$HealthResponseImplFromJson(json);
@@ -127,11 +509,49 @@ class _$HealthResponseImpl implements _HealthResponse {
   @override
   final String status;
   @override
+  final String? framework;
+  @override
   final String? version;
+  @override
+  final LlmHealthInfo? llm;
+  final Map<String, dynamic>? _ollama;
+  @override
+  Map<String, dynamic>? get ollama {
+    final value = _ollama;
+    if (value == null) return null;
+    if (_ollama is EqualUnmodifiableMapView) return _ollama;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  final Map<String, dynamic>? _openai;
+  @override
+  Map<String, dynamic>? get openai {
+    final value = _openai;
+    if (value == null) return null;
+    if (_openai is EqualUnmodifiableMapView) return _openai;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  final Map<String, dynamic>? _observability;
+  @override
+  Map<String, dynamic>? get observability {
+    final value = _observability;
+    if (value == null) return null;
+    if (_observability is EqualUnmodifiableMapView) return _observability;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  final String? timestamp;
+  @override
+  final String? error;
 
   @override
   String toString() {
-    return 'HealthResponse(status: $status, version: $version)';
+    return 'HealthResponse(status: $status, framework: $framework, version: $version, llm: $llm, ollama: $ollama, openai: $openai, observability: $observability, timestamp: $timestamp, error: $error)';
   }
 
   @override
@@ -140,12 +560,35 @@ class _$HealthResponseImpl implements _HealthResponse {
         (other.runtimeType == runtimeType &&
             other is _$HealthResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.version, version) || other.version == version));
+            (identical(other.framework, framework) ||
+                other.framework == framework) &&
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.llm, llm) || other.llm == llm) &&
+            const DeepCollectionEquality().equals(other._ollama, _ollama) &&
+            const DeepCollectionEquality().equals(other._openai, _openai) &&
+            const DeepCollectionEquality().equals(
+              other._observability,
+              _observability,
+            ) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, status, version);
+  int get hashCode => Object.hash(
+    runtimeType,
+    status,
+    framework,
+    version,
+    llm,
+    const DeepCollectionEquality().hash(_ollama),
+    const DeepCollectionEquality().hash(_openai),
+    const DeepCollectionEquality().hash(_observability),
+    timestamp,
+    error,
+  );
 
   /// Create a copy of HealthResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -167,7 +610,14 @@ class _$HealthResponseImpl implements _HealthResponse {
 abstract class _HealthResponse implements HealthResponse {
   const factory _HealthResponse({
     required final String status,
+    final String? framework,
     final String? version,
+    final LlmHealthInfo? llm,
+    final Map<String, dynamic>? ollama,
+    final Map<String, dynamic>? openai,
+    final Map<String, dynamic>? observability,
+    final String? timestamp,
+    final String? error,
   }) = _$HealthResponseImpl;
 
   factory _HealthResponse.fromJson(Map<String, dynamic> json) =
@@ -176,7 +626,21 @@ abstract class _HealthResponse implements HealthResponse {
   @override
   String get status;
   @override
+  String? get framework;
+  @override
   String? get version;
+  @override
+  LlmHealthInfo? get llm;
+  @override
+  Map<String, dynamic>? get ollama;
+  @override
+  Map<String, dynamic>? get openai;
+  @override
+  Map<String, dynamic>? get observability;
+  @override
+  String? get timestamp;
+  @override
+  String? get error;
 
   /// Create a copy of HealthResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -192,10 +656,8 @@ StatsResponse _$StatsResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StatsResponse {
-  int? get totalDocuments => throw _privateConstructorUsedError;
-  int? get totalChunks => throw _privateConstructorUsedError;
-  int? get totalVectors => throw _privateConstructorUsedError;
-  String? get lastUpdated => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
+  Map<String, dynamic> get stats => throw _privateConstructorUsedError;
 
   /// Serializes this StatsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -214,12 +676,7 @@ abstract class $StatsResponseCopyWith<$Res> {
     $Res Function(StatsResponse) then,
   ) = _$StatsResponseCopyWithImpl<$Res, StatsResponse>;
   @useResult
-  $Res call({
-    int? totalDocuments,
-    int? totalChunks,
-    int? totalVectors,
-    String? lastUpdated,
-  });
+  $Res call({bool success, Map<String, dynamic> stats});
 }
 
 /// @nodoc
@@ -236,30 +693,17 @@ class _$StatsResponseCopyWithImpl<$Res, $Val extends StatsResponse>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? totalDocuments = freezed,
-    Object? totalChunks = freezed,
-    Object? totalVectors = freezed,
-    Object? lastUpdated = freezed,
-  }) {
+  $Res call({Object? success = null, Object? stats = null}) {
     return _then(
       _value.copyWith(
-            totalDocuments: freezed == totalDocuments
-                ? _value.totalDocuments
-                : totalDocuments // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            totalChunks: freezed == totalChunks
-                ? _value.totalChunks
-                : totalChunks // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            totalVectors: freezed == totalVectors
-                ? _value.totalVectors
-                : totalVectors // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            lastUpdated: freezed == lastUpdated
-                ? _value.lastUpdated
-                : lastUpdated // ignore: cast_nullable_to_non_nullable
-                      as String?,
+            success: null == success
+                ? _value.success
+                : success // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            stats: null == stats
+                ? _value.stats
+                : stats // ignore: cast_nullable_to_non_nullable
+                      as Map<String, dynamic>,
           )
           as $Val,
     );
@@ -275,12 +719,7 @@ abstract class _$$StatsResponseImplCopyWith<$Res>
   ) = __$$StatsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    int? totalDocuments,
-    int? totalChunks,
-    int? totalVectors,
-    String? lastUpdated,
-  });
+  $Res call({bool success, Map<String, dynamic> stats});
 }
 
 /// @nodoc
@@ -296,30 +735,17 @@ class __$$StatsResponseImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? totalDocuments = freezed,
-    Object? totalChunks = freezed,
-    Object? totalVectors = freezed,
-    Object? lastUpdated = freezed,
-  }) {
+  $Res call({Object? success = null, Object? stats = null}) {
     return _then(
       _$StatsResponseImpl(
-        totalDocuments: freezed == totalDocuments
-            ? _value.totalDocuments
-            : totalDocuments // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        totalChunks: freezed == totalChunks
-            ? _value.totalChunks
-            : totalChunks // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        totalVectors: freezed == totalVectors
-            ? _value.totalVectors
-            : totalVectors // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        lastUpdated: freezed == lastUpdated
-            ? _value.lastUpdated
-            : lastUpdated // ignore: cast_nullable_to_non_nullable
-                  as String?,
+        success: null == success
+            ? _value.success
+            : success // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        stats: null == stats
+            ? _value._stats
+            : stats // ignore: cast_nullable_to_non_nullable
+                  as Map<String, dynamic>,
       ),
     );
   }
@@ -329,27 +755,27 @@ class __$$StatsResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StatsResponseImpl implements _StatsResponse {
   const _$StatsResponseImpl({
-    this.totalDocuments,
-    this.totalChunks,
-    this.totalVectors,
-    this.lastUpdated,
-  });
+    required this.success,
+    final Map<String, dynamic> stats = const {},
+  }) : _stats = stats;
 
   factory _$StatsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$StatsResponseImplFromJson(json);
 
   @override
-  final int? totalDocuments;
+  final bool success;
+  final Map<String, dynamic> _stats;
   @override
-  final int? totalChunks;
-  @override
-  final int? totalVectors;
-  @override
-  final String? lastUpdated;
+  @JsonKey()
+  Map<String, dynamic> get stats {
+    if (_stats is EqualUnmodifiableMapView) return _stats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_stats);
+  }
 
   @override
   String toString() {
-    return 'StatsResponse(totalDocuments: $totalDocuments, totalChunks: $totalChunks, totalVectors: $totalVectors, lastUpdated: $lastUpdated)';
+    return 'StatsResponse(success: $success, stats: $stats)';
   }
 
   @override
@@ -357,24 +783,16 @@ class _$StatsResponseImpl implements _StatsResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StatsResponseImpl &&
-            (identical(other.totalDocuments, totalDocuments) ||
-                other.totalDocuments == totalDocuments) &&
-            (identical(other.totalChunks, totalChunks) ||
-                other.totalChunks == totalChunks) &&
-            (identical(other.totalVectors, totalVectors) ||
-                other.totalVectors == totalVectors) &&
-            (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated));
+            (identical(other.success, success) || other.success == success) &&
+            const DeepCollectionEquality().equals(other._stats, _stats));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    totalDocuments,
-    totalChunks,
-    totalVectors,
-    lastUpdated,
+    success,
+    const DeepCollectionEquality().hash(_stats),
   );
 
   /// Create a copy of StatsResponse
@@ -393,23 +811,17 @@ class _$StatsResponseImpl implements _StatsResponse {
 
 abstract class _StatsResponse implements StatsResponse {
   const factory _StatsResponse({
-    final int? totalDocuments,
-    final int? totalChunks,
-    final int? totalVectors,
-    final String? lastUpdated,
+    required final bool success,
+    final Map<String, dynamic> stats,
   }) = _$StatsResponseImpl;
 
   factory _StatsResponse.fromJson(Map<String, dynamic> json) =
       _$StatsResponseImpl.fromJson;
 
   @override
-  int? get totalDocuments;
+  bool get success;
   @override
-  int? get totalChunks;
-  @override
-  int? get totalVectors;
-  @override
-  String? get lastUpdated;
+  Map<String, dynamic> get stats;
 
   /// Create a copy of StatsResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -419,665 +831,16 @@ abstract class _StatsResponse implements StatsResponse {
       throw _privateConstructorUsedError;
 }
 
-DatabaseInfoResponse _$DatabaseInfoResponseFromJson(Map<String, dynamic> json) {
-  return _DatabaseInfoResponse.fromJson(json);
-}
-
-/// @nodoc
-mixin _$DatabaseInfoResponse {
-  String? get dbName => throw _privateConstructorUsedError;
-  String? get dbSource => throw _privateConstructorUsedError;
-  List<TableInfo>? get tables => throw _privateConstructorUsedError;
-  String? get connectionStatus => throw _privateConstructorUsedError;
-
-  /// Serializes this DatabaseInfoResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of DatabaseInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DatabaseInfoResponseCopyWith<DatabaseInfoResponse> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DatabaseInfoResponseCopyWith<$Res> {
-  factory $DatabaseInfoResponseCopyWith(
-    DatabaseInfoResponse value,
-    $Res Function(DatabaseInfoResponse) then,
-  ) = _$DatabaseInfoResponseCopyWithImpl<$Res, DatabaseInfoResponse>;
-  @useResult
-  $Res call({
-    String? dbName,
-    String? dbSource,
-    List<TableInfo>? tables,
-    String? connectionStatus,
-  });
-}
-
-/// @nodoc
-class _$DatabaseInfoResponseCopyWithImpl<
-  $Res,
-  $Val extends DatabaseInfoResponse
->
-    implements $DatabaseInfoResponseCopyWith<$Res> {
-  _$DatabaseInfoResponseCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of DatabaseInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? dbName = freezed,
-    Object? dbSource = freezed,
-    Object? tables = freezed,
-    Object? connectionStatus = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            dbName: freezed == dbName
-                ? _value.dbName
-                : dbName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            dbSource: freezed == dbSource
-                ? _value.dbSource
-                : dbSource // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            tables: freezed == tables
-                ? _value.tables
-                : tables // ignore: cast_nullable_to_non_nullable
-                      as List<TableInfo>?,
-            connectionStatus: freezed == connectionStatus
-                ? _value.connectionStatus
-                : connectionStatus // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
-  }
-}
-
-/// @nodoc
-abstract class _$$DatabaseInfoResponseImplCopyWith<$Res>
-    implements $DatabaseInfoResponseCopyWith<$Res> {
-  factory _$$DatabaseInfoResponseImplCopyWith(
-    _$DatabaseInfoResponseImpl value,
-    $Res Function(_$DatabaseInfoResponseImpl) then,
-  ) = __$$DatabaseInfoResponseImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    String? dbName,
-    String? dbSource,
-    List<TableInfo>? tables,
-    String? connectionStatus,
-  });
-}
-
-/// @nodoc
-class __$$DatabaseInfoResponseImplCopyWithImpl<$Res>
-    extends _$DatabaseInfoResponseCopyWithImpl<$Res, _$DatabaseInfoResponseImpl>
-    implements _$$DatabaseInfoResponseImplCopyWith<$Res> {
-  __$$DatabaseInfoResponseImplCopyWithImpl(
-    _$DatabaseInfoResponseImpl _value,
-    $Res Function(_$DatabaseInfoResponseImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of DatabaseInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? dbName = freezed,
-    Object? dbSource = freezed,
-    Object? tables = freezed,
-    Object? connectionStatus = freezed,
-  }) {
-    return _then(
-      _$DatabaseInfoResponseImpl(
-        dbName: freezed == dbName
-            ? _value.dbName
-            : dbName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        dbSource: freezed == dbSource
-            ? _value.dbSource
-            : dbSource // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        tables: freezed == tables
-            ? _value._tables
-            : tables // ignore: cast_nullable_to_non_nullable
-                  as List<TableInfo>?,
-        connectionStatus: freezed == connectionStatus
-            ? _value.connectionStatus
-            : connectionStatus // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$DatabaseInfoResponseImpl implements _DatabaseInfoResponse {
-  const _$DatabaseInfoResponseImpl({
-    this.dbName,
-    this.dbSource,
-    final List<TableInfo>? tables,
-    this.connectionStatus,
-  }) : _tables = tables;
-
-  factory _$DatabaseInfoResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DatabaseInfoResponseImplFromJson(json);
-
-  @override
-  final String? dbName;
-  @override
-  final String? dbSource;
-  final List<TableInfo>? _tables;
-  @override
-  List<TableInfo>? get tables {
-    final value = _tables;
-    if (value == null) return null;
-    if (_tables is EqualUnmodifiableListView) return _tables;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final String? connectionStatus;
-
-  @override
-  String toString() {
-    return 'DatabaseInfoResponse(dbName: $dbName, dbSource: $dbSource, tables: $tables, connectionStatus: $connectionStatus)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DatabaseInfoResponseImpl &&
-            (identical(other.dbName, dbName) || other.dbName == dbName) &&
-            (identical(other.dbSource, dbSource) ||
-                other.dbSource == dbSource) &&
-            const DeepCollectionEquality().equals(other._tables, _tables) &&
-            (identical(other.connectionStatus, connectionStatus) ||
-                other.connectionStatus == connectionStatus));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    dbName,
-    dbSource,
-    const DeepCollectionEquality().hash(_tables),
-    connectionStatus,
-  );
-
-  /// Create a copy of DatabaseInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DatabaseInfoResponseImplCopyWith<_$DatabaseInfoResponseImpl>
-  get copyWith =>
-      __$$DatabaseInfoResponseImplCopyWithImpl<_$DatabaseInfoResponseImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DatabaseInfoResponseImplToJson(this);
-  }
-}
-
-abstract class _DatabaseInfoResponse implements DatabaseInfoResponse {
-  const factory _DatabaseInfoResponse({
-    final String? dbName,
-    final String? dbSource,
-    final List<TableInfo>? tables,
-    final String? connectionStatus,
-  }) = _$DatabaseInfoResponseImpl;
-
-  factory _DatabaseInfoResponse.fromJson(Map<String, dynamic> json) =
-      _$DatabaseInfoResponseImpl.fromJson;
-
-  @override
-  String? get dbName;
-  @override
-  String? get dbSource;
-  @override
-  List<TableInfo>? get tables;
-  @override
-  String? get connectionStatus;
-
-  /// Create a copy of DatabaseInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DatabaseInfoResponseImplCopyWith<_$DatabaseInfoResponseImpl>
-  get copyWith => throw _privateConstructorUsedError;
-}
-
-TableInfo _$TableInfoFromJson(Map<String, dynamic> json) {
-  return _TableInfo.fromJson(json);
-}
-
-/// @nodoc
-mixin _$TableInfo {
-  String get name => throw _privateConstructorUsedError;
-  int? get rowCount => throw _privateConstructorUsedError;
-  List<ColumnInfo>? get columns => throw _privateConstructorUsedError;
-
-  /// Serializes this TableInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TableInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TableInfoCopyWith<TableInfo> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TableInfoCopyWith<$Res> {
-  factory $TableInfoCopyWith(TableInfo value, $Res Function(TableInfo) then) =
-      _$TableInfoCopyWithImpl<$Res, TableInfo>;
-  @useResult
-  $Res call({String name, int? rowCount, List<ColumnInfo>? columns});
-}
-
-/// @nodoc
-class _$TableInfoCopyWithImpl<$Res, $Val extends TableInfo>
-    implements $TableInfoCopyWith<$Res> {
-  _$TableInfoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TableInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? rowCount = freezed,
-    Object? columns = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            name: null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String,
-            rowCount: freezed == rowCount
-                ? _value.rowCount
-                : rowCount // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            columns: freezed == columns
-                ? _value.columns
-                : columns // ignore: cast_nullable_to_non_nullable
-                      as List<ColumnInfo>?,
-          )
-          as $Val,
-    );
-  }
-}
-
-/// @nodoc
-abstract class _$$TableInfoImplCopyWith<$Res>
-    implements $TableInfoCopyWith<$Res> {
-  factory _$$TableInfoImplCopyWith(
-    _$TableInfoImpl value,
-    $Res Function(_$TableInfoImpl) then,
-  ) = __$$TableInfoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, int? rowCount, List<ColumnInfo>? columns});
-}
-
-/// @nodoc
-class __$$TableInfoImplCopyWithImpl<$Res>
-    extends _$TableInfoCopyWithImpl<$Res, _$TableInfoImpl>
-    implements _$$TableInfoImplCopyWith<$Res> {
-  __$$TableInfoImplCopyWithImpl(
-    _$TableInfoImpl _value,
-    $Res Function(_$TableInfoImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of TableInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? rowCount = freezed,
-    Object? columns = freezed,
-  }) {
-    return _then(
-      _$TableInfoImpl(
-        name: null == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String,
-        rowCount: freezed == rowCount
-            ? _value.rowCount
-            : rowCount // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        columns: freezed == columns
-            ? _value._columns
-            : columns // ignore: cast_nullable_to_non_nullable
-                  as List<ColumnInfo>?,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$TableInfoImpl implements _TableInfo {
-  const _$TableInfoImpl({
-    required this.name,
-    this.rowCount,
-    final List<ColumnInfo>? columns,
-  }) : _columns = columns;
-
-  factory _$TableInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TableInfoImplFromJson(json);
-
-  @override
-  final String name;
-  @override
-  final int? rowCount;
-  final List<ColumnInfo>? _columns;
-  @override
-  List<ColumnInfo>? get columns {
-    final value = _columns;
-    if (value == null) return null;
-    if (_columns is EqualUnmodifiableListView) return _columns;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'TableInfo(name: $name, rowCount: $rowCount, columns: $columns)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TableInfoImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.rowCount, rowCount) ||
-                other.rowCount == rowCount) &&
-            const DeepCollectionEquality().equals(other._columns, _columns));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    name,
-    rowCount,
-    const DeepCollectionEquality().hash(_columns),
-  );
-
-  /// Create a copy of TableInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TableInfoImplCopyWith<_$TableInfoImpl> get copyWith =>
-      __$$TableInfoImplCopyWithImpl<_$TableInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TableInfoImplToJson(this);
-  }
-}
-
-abstract class _TableInfo implements TableInfo {
-  const factory _TableInfo({
-    required final String name,
-    final int? rowCount,
-    final List<ColumnInfo>? columns,
-  }) = _$TableInfoImpl;
-
-  factory _TableInfo.fromJson(Map<String, dynamic> json) =
-      _$TableInfoImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  int? get rowCount;
-  @override
-  List<ColumnInfo>? get columns;
-
-  /// Create a copy of TableInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TableInfoImplCopyWith<_$TableInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ColumnInfo _$ColumnInfoFromJson(Map<String, dynamic> json) {
-  return _ColumnInfo.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ColumnInfo {
-  String get name => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  bool? get nullable => throw _privateConstructorUsedError;
-
-  /// Serializes this ColumnInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ColumnInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ColumnInfoCopyWith<ColumnInfo> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ColumnInfoCopyWith<$Res> {
-  factory $ColumnInfoCopyWith(
-    ColumnInfo value,
-    $Res Function(ColumnInfo) then,
-  ) = _$ColumnInfoCopyWithImpl<$Res, ColumnInfo>;
-  @useResult
-  $Res call({String name, String type, bool? nullable});
-}
-
-/// @nodoc
-class _$ColumnInfoCopyWithImpl<$Res, $Val extends ColumnInfo>
-    implements $ColumnInfoCopyWith<$Res> {
-  _$ColumnInfoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ColumnInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? type = null,
-    Object? nullable = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            name: null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String,
-            type: null == type
-                ? _value.type
-                : type // ignore: cast_nullable_to_non_nullable
-                      as String,
-            nullable: freezed == nullable
-                ? _value.nullable
-                : nullable // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-          )
-          as $Val,
-    );
-  }
-}
-
-/// @nodoc
-abstract class _$$ColumnInfoImplCopyWith<$Res>
-    implements $ColumnInfoCopyWith<$Res> {
-  factory _$$ColumnInfoImplCopyWith(
-    _$ColumnInfoImpl value,
-    $Res Function(_$ColumnInfoImpl) then,
-  ) = __$$ColumnInfoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, String type, bool? nullable});
-}
-
-/// @nodoc
-class __$$ColumnInfoImplCopyWithImpl<$Res>
-    extends _$ColumnInfoCopyWithImpl<$Res, _$ColumnInfoImpl>
-    implements _$$ColumnInfoImplCopyWith<$Res> {
-  __$$ColumnInfoImplCopyWithImpl(
-    _$ColumnInfoImpl _value,
-    $Res Function(_$ColumnInfoImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ColumnInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? type = null,
-    Object? nullable = freezed,
-  }) {
-    return _then(
-      _$ColumnInfoImpl(
-        name: null == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String,
-        type: null == type
-            ? _value.type
-            : type // ignore: cast_nullable_to_non_nullable
-                  as String,
-        nullable: freezed == nullable
-            ? _value.nullable
-            : nullable // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ColumnInfoImpl implements _ColumnInfo {
-  const _$ColumnInfoImpl({
-    required this.name,
-    required this.type,
-    this.nullable,
-  });
-
-  factory _$ColumnInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ColumnInfoImplFromJson(json);
-
-  @override
-  final String name;
-  @override
-  final String type;
-  @override
-  final bool? nullable;
-
-  @override
-  String toString() {
-    return 'ColumnInfo(name: $name, type: $type, nullable: $nullable)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ColumnInfoImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.nullable, nullable) ||
-                other.nullable == nullable));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, name, type, nullable);
-
-  /// Create a copy of ColumnInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ColumnInfoImplCopyWith<_$ColumnInfoImpl> get copyWith =>
-      __$$ColumnInfoImplCopyWithImpl<_$ColumnInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ColumnInfoImplToJson(this);
-  }
-}
-
-abstract class _ColumnInfo implements ColumnInfo {
-  const factory _ColumnInfo({
-    required final String name,
-    required final String type,
-    final bool? nullable,
-  }) = _$ColumnInfoImpl;
-
-  factory _ColumnInfo.fromJson(Map<String, dynamic> json) =
-      _$ColumnInfoImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  String get type;
-  @override
-  bool? get nullable;
-
-  /// Create a copy of ColumnInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ColumnInfoImplCopyWith<_$ColumnInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 TranscribeResult _$TranscribeResultFromJson(Map<String, dynamic> json) {
   return _TranscribeResult.fromJson(json);
 }
 
 /// @nodoc
 mixin _$TranscribeResult {
-  // 转写文本
-  String get text => throw _privateConstructorUsedError; // 语言
-  String? get language => throw _privateConstructorUsedError; // 置信度
-  double? get confidence => throw _privateConstructorUsedError; // 时长（秒）
-  double? get duration => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
+  @JsonKey(name: 'duration_ms')
+  int? get durationMs => throw _privateConstructorUsedError;
 
   /// Serializes this TranscribeResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1099,8 +862,7 @@ abstract class $TranscribeResultCopyWith<$Res> {
   $Res call({
     String text,
     String? language,
-    double? confidence,
-    double? duration,
+    @JsonKey(name: 'duration_ms') int? durationMs,
   });
 }
 
@@ -1121,8 +883,7 @@ class _$TranscribeResultCopyWithImpl<$Res, $Val extends TranscribeResult>
   $Res call({
     Object? text = null,
     Object? language = freezed,
-    Object? confidence = freezed,
-    Object? duration = freezed,
+    Object? durationMs = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -1134,14 +895,10 @@ class _$TranscribeResultCopyWithImpl<$Res, $Val extends TranscribeResult>
                 ? _value.language
                 : language // ignore: cast_nullable_to_non_nullable
                       as String?,
-            confidence: freezed == confidence
-                ? _value.confidence
-                : confidence // ignore: cast_nullable_to_non_nullable
-                      as double?,
-            duration: freezed == duration
-                ? _value.duration
-                : duration // ignore: cast_nullable_to_non_nullable
-                      as double?,
+            durationMs: freezed == durationMs
+                ? _value.durationMs
+                : durationMs // ignore: cast_nullable_to_non_nullable
+                      as int?,
           )
           as $Val,
     );
@@ -1160,8 +917,7 @@ abstract class _$$TranscribeResultImplCopyWith<$Res>
   $Res call({
     String text,
     String? language,
-    double? confidence,
-    double? duration,
+    @JsonKey(name: 'duration_ms') int? durationMs,
   });
 }
 
@@ -1181,8 +937,7 @@ class __$$TranscribeResultImplCopyWithImpl<$Res>
   $Res call({
     Object? text = null,
     Object? language = freezed,
-    Object? confidence = freezed,
-    Object? duration = freezed,
+    Object? durationMs = freezed,
   }) {
     return _then(
       _$TranscribeResultImpl(
@@ -1194,14 +949,10 @@ class __$$TranscribeResultImplCopyWithImpl<$Res>
             ? _value.language
             : language // ignore: cast_nullable_to_non_nullable
                   as String?,
-        confidence: freezed == confidence
-            ? _value.confidence
-            : confidence // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        duration: freezed == duration
-            ? _value.duration
-            : duration // ignore: cast_nullable_to_non_nullable
-                  as double?,
+        durationMs: freezed == durationMs
+            ? _value.durationMs
+            : durationMs // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -1213,29 +964,23 @@ class _$TranscribeResultImpl implements _TranscribeResult {
   const _$TranscribeResultImpl({
     required this.text,
     this.language,
-    this.confidence,
-    this.duration,
+    @JsonKey(name: 'duration_ms') this.durationMs,
   });
 
   factory _$TranscribeResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$TranscribeResultImplFromJson(json);
 
-  // 转写文本
   @override
   final String text;
-  // 语言
   @override
   final String? language;
-  // 置信度
   @override
-  final double? confidence;
-  // 时长（秒）
-  @override
-  final double? duration;
+  @JsonKey(name: 'duration_ms')
+  final int? durationMs;
 
   @override
   String toString() {
-    return 'TranscribeResult(text: $text, language: $language, confidence: $confidence, duration: $duration)';
+    return 'TranscribeResult(text: $text, language: $language, durationMs: $durationMs)';
   }
 
   @override
@@ -1246,16 +991,13 @@ class _$TranscribeResultImpl implements _TranscribeResult {
             (identical(other.text, text) || other.text == text) &&
             (identical(other.language, language) ||
                 other.language == language) &&
-            (identical(other.confidence, confidence) ||
-                other.confidence == confidence) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
+            (identical(other.durationMs, durationMs) ||
+                other.durationMs == durationMs));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, text, language, confidence, duration);
+  int get hashCode => Object.hash(runtimeType, text, language, durationMs);
 
   /// Create a copy of TranscribeResult
   /// with the given fields replaced by the non-null parameter values.
@@ -1278,22 +1020,19 @@ abstract class _TranscribeResult implements TranscribeResult {
   const factory _TranscribeResult({
     required final String text,
     final String? language,
-    final double? confidence,
-    final double? duration,
+    @JsonKey(name: 'duration_ms') final int? durationMs,
   }) = _$TranscribeResultImpl;
 
   factory _TranscribeResult.fromJson(Map<String, dynamic> json) =
       _$TranscribeResultImpl.fromJson;
 
-  // 转写文本
   @override
-  String get text; // 语言
+  String get text;
   @override
-  String? get language; // 置信度
+  String? get language;
   @override
-  double? get confidence; // 时长（秒）
-  @override
-  double? get duration;
+  @JsonKey(name: 'duration_ms')
+  int? get durationMs;
 
   /// Create a copy of TranscribeResult
   /// with the given fields replaced by the non-null parameter values.
