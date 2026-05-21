@@ -114,12 +114,11 @@ Agent 后端用于对话、报告、健康检查、统计和索引更新。
 /asr
 ```
 
-请求方式：multipart form，包含：
+兼容 ahmetoner/whisper-asr-webservice：
 
-- `file`
-- `language`
-- `vad_filter`
-- `word_timestamps`
+- 文件以 multipart form 上传，字段名固定为 `audio_file`。
+- `language`、`vad_filter`、`word_timestamps`、`output` 作为 query 参数。
+- 客户端强制 `output=json`，避免默认纯文本响应导致解析失败；如部署返回纯文本也会兜底为 `text` 字段。
 
 ### TTS 后端
 
@@ -155,7 +154,7 @@ TTS 使用 OpenAI-compatible speech 风格接口。
 
 | 配置项 | 默认值 | 用途 |
 |--------|--------|------|
-| Agent 后端地址 | `http://localhost:5000` | 对话、报告、健康检查、统计、索引更新 |
+| Agent 后端地址 | `http://localhost:5563` | 对话、报告、健康检查、统计、索引更新 |
 | STT 后端地址 | `http://localhost:9000` | 语音转文字 |
 | TTS 后端地址 | `http://localhost:8880` | 语音合成 |
 | TTS voice | `zf_094` | 语音合成声音 |

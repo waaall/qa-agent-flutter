@@ -66,7 +66,16 @@ class TTSService {
       ),
     );
 
-    return Uint8List.fromList(response.data ?? const []);
+    final audioBytes = Uint8List.fromList(response.data ?? const []);
+    Logger.debug('TTS 音频返回', {
+      'bytes': audioBytes.length,
+      'contentType': response.headers.value(Headers.contentTypeHeader),
+    });
+    if (audioBytes.isEmpty) {
+      throw Exception('TTS 后端返回了空音频');
+    }
+
+    return audioBytes;
   }
 
   /// 测试 TTS 服务连接。

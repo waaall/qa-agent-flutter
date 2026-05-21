@@ -1,7 +1,7 @@
 /// 应用配置
 class AppConfig {
   // 默认 Agent 后端地址；实际使用时可在设置页覆盖。
-  static const String defaultAgentBaseUrl = 'http://192.168.50.198:5000';
+  static const String defaultAgentBaseUrl = 'http://192.168.50.198:5563';
 
   // 默认 STT 服务地址。
   static const String defaultSttBaseUrl = 'http://192.168.50.198:9000';
@@ -14,6 +14,9 @@ class AppConfig {
 
   // TTS 输出格式固定为 mp3。
   static const String ttsResponseFormat = 'mp3';
+
+  // TTS mp3 对应的 MIME 类型，播放时显式传给底层播放器。
+  static const String ttsMimeType = 'audio/mpeg';
 
   // OpenAI-compatible speech 默认路径。
   static const String defaultTtsSpeechPath = '/v1/audio/speech';

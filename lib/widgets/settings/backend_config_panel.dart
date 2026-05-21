@@ -121,7 +121,7 @@ class _BackendConfigPanelState extends ConsumerState<BackendConfigPanel> {
           title: 'Agent 后端地址',
           description: '用于对话、报告、系统状态和索引更新。',
           controller: _agentUrlController,
-          hintText: 'http://192.168.50.198:5000',
+          hintText: 'http://192.168.50.198:5563',
         ),
         const SizedBox(height: 16),
         _buildServiceCard(
