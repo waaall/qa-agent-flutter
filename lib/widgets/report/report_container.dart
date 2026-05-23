@@ -21,28 +21,26 @@ class ReportContainer extends StatelessWidget {
       children: [
         Container(
           height: 56,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
             border: Border(
-              bottom: BorderSide(
-                color: theme.dividerTheme.color ?? theme.dividerColor,
-              ),
+              bottom: BorderSide(color: theme.colorScheme.outlineVariant),
             ),
           ),
           child: Row(
             children: [
               if (showMenuButton)
                 IconButton(
-                  icon: const Icon(Icons.menu),
+                  icon: const Icon(Icons.menu, size: 20),
                   onPressed: onMenuTap,
                   tooltip: '菜单',
                 ),
-              const SizedBox(width: 8),
-              const Expanded(
+              const SizedBox(width: 4),
+              Expanded(
                 child: Text(
                   '报告',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  style: theme.textTheme.titleMedium,
                 ),
               ),
               const WorkspaceSwitcher(),

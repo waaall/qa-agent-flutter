@@ -25,51 +25,49 @@ class SessionList extends ConsumerWidget {
       color: theme.scaffoldBackgroundColor,
       child: Column(
         children: [
-          // 头部
-          Container(
-            padding: const EdgeInsets.all(16),
+          // 头部:更细的字重,与正文一致的水平内边距
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 8, 12),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
                     'PowerPlantQA',
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: theme.textTheme.titleLarge,
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.settings_outlined),
+                  icon: const Icon(Icons.settings_outlined, size: 20),
                   onPressed: () => context.push('/settings'),
                   tooltip: '设置',
                 ),
               ],
             ),
           ),
-          // 新对话按钮
+          // 新对话按钮:走全局 OutlinedButton 主题(次级、克制)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: SizedBox(
               width: double.infinity,
-              child: ElevatedButton.icon(
+              child: OutlinedButton.icon(
                 onPressed: () {
                   ref.read(sessionControllerProvider).createNewSession();
                   onSessionTap?.call();
                 },
-                icon: const Icon(Icons.add, size: 20),
+                icon: const Icon(Icons.add, size: 18),
                 label: const Text('新对话'),
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           // 会话列表
           Expanded(
             child: sessions.isEmpty
                 ? Center(
                     child: Text(
                       '暂无会话',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
                   )

@@ -75,13 +75,11 @@ class _InputBoxState extends State<InputBox> {
     final theme = Theme.of(context);
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         border: Border(
-          top: BorderSide(
-            color: theme.dividerTheme.color ?? theme.dividerColor,
-          ),
+          top: BorderSide(color: theme.colorScheme.outlineVariant),
         ),
       ),
       child: Center(
@@ -122,31 +120,29 @@ class _InputBoxState extends State<InputBox> {
                       maxLengthEnforcement: MaxLengthEnforcement.enforced,
                       enabled: !widget.isLoading,
                       textInputAction: TextInputAction.newline,
+                      // 圆角/填充交给全局 inputDecorationTheme,保持一致
                       decoration: InputDecoration(
                         hintText: widget.isLoading ? '正在思考...' : '输入您的问题...',
                         counterText: '',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
                       ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(width: 12),
-              // 发送按钮
+              // 发送按钮:spinner 颜色取 onPrimary,避免在主色变化时失配
               IconButton.filled(
                 onPressed: _isEmpty || widget.isLoading ? null : _handleSend,
                 icon: widget.isLoading
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
+                    ? SizedBox(
+                        width: 18,
+                        height: 18,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          color: Colors.white,
+                          color: theme.colorScheme.onPrimary,
                         ),
                       )
-                    : const Icon(Icons.send),
+                    : const Icon(Icons.send_outlined, size: 20),
                 tooltip: '发送 (Ctrl+Enter)',
               ),
             ],

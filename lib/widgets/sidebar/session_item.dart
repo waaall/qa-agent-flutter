@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/app_theme.dart';
+
 /// 会话列表项
 class SessionItem extends StatefulWidget {
   final String title;
@@ -25,62 +27,86 @@ class _SessionItemState extends State<SessionItem> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final cs = theme.colorScheme;
+
+    // 选中:主色容器底色;悬停:发丝级中性高亮;默认:透明
+    final bg = widget.isActive
+        ? cs.primaryContainer
+        : _isHovered
+            ? cs.onSurface.withValues(alpha: 0.04)
+            : Colors.transparent;
+
+    final iconColor = widget.isActive
+        ? cs.onPrimaryContainer
+        : cs.onSurfaceVariant;
+    final textColor = widget.isActive ? cs.onPrimaryContainer : cs.onSurface;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onLongPress: () => _showDeleteDialog(context),
-        child: Material(
-          color: widget.isActive
-              ? theme.colorScheme.primary.withValues(alpha: 0.1)
-              : _isHovered
-                  ? theme.colorScheme.onSurface.withValues(alpha: 0.05)
-                  : Colors.transparent,
-          borderRadius: BorderRadius.circular(8),
-          child: InkWell(
-            onTap: widget.onTap,
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 10,
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.chat_bubble_outline,
-                    size: 18,
-                    color: widget.isActive
-                        ? theme.colorScheme.primary
-                        : theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      widget.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: widget.isActive
-                            ? theme.colorScheme.primary
-                            : null,
+        // 120ms 微过渡:从瞬切变成柔和的色彩淡入
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 120),
+          curve: Curves.easeOut,
+          margin: const EdgeInsets.symmetric(vertical: 1),
+          decoration: BoxDecoration(
+            color: bg,
+            borderRadius: BorderRadius.circular(AppTheme.radiusInteractive),
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: widget.onTap,
+              borderRadius:
+                  BorderRadius.circular(AppTheme.radiusInteractive),
+              hoverColor: Colors.transparent,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 8,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.chat_bubble_outline,
+                      size: 16,
+                      color: iconColor,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        widget.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: textColor,
+                          fontWeight: widget.isActive
+                              ? FontWeight.w500
+                              : FontWeight.w400,
+                        ),
                       ),
                     ),
-                  ),
-                  // 删除按钮（悬停时显示）
-                  if (_isHovered && widget.onDelete != null)
-                    IconButton(
-                      icon: const Icon(Icons.delete_outline, size: 18),
-                      onPressed: () => _showDeleteDialog(context),
-                      tooltip: '删除',
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(
-                        minWidth: 32,
-                        minHeight: 32,
+                    // 悬停时露出删除按钮
+                    if (_isHovered && widget.onDelete != null)
+                      SizedBox(
+                        width: 28,
+                        height: 28,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.close_rounded,
+                            size: 16,
+                            color: cs.onSurfaceVariant,
+                          ),
+                          onPressed: () => _showDeleteDialog(context),
+                          tooltip: '删除',
+                          padding: EdgeInsets.zero,
+                          splashRadius: 14,
+                        ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -94,7 +120,7 @@ class _SessionItemState extends State<SessionItem> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('删除会话'),
-        content: const Text('确定要删除这个会话吗？此操作不可撤销。'),
+        content: const Text('确定要删除这个会话吗?此操作不可撤销。'),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),

@@ -17,6 +17,7 @@ class MarkdownRenderer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final cs = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
 
     return MarkdownBody(
@@ -29,48 +30,42 @@ class MarkdownRenderer extends StatelessWidget {
       },
       styleSheet: MarkdownStyleSheet(
         p: theme.textTheme.bodyMedium,
-        h1: theme.textTheme.headlineMedium?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
-        h2: theme.textTheme.headlineSmall?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
-        h3: theme.textTheme.titleLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
+        h1: theme.textTheme.headlineMedium,
+        h2: theme.textTheme.headlineSmall,
+        h3: theme.textTheme.titleLarge,
+        // 行内代码:用主题 surfaceContainer,不再硬编码 hex
         code: TextStyle(
-          backgroundColor: isDark
-              ? const Color(0xFF2A2F45)
-              : const Color(0xFFF5F5F5),
+          backgroundColor: cs.surfaceContainer,
+          color: cs.onSurface,
           fontFamily: 'monospace',
           fontSize: 13,
         ),
+        // 代码块:用 surfaceContainerLow,与行内代码区分,内部高亮主题在 _CodeBlockBuilder
         codeblockDecoration: BoxDecoration(
-          color: isDark
-              ? const Color(0xFF1E2233)
-              : const Color(0xFFF5F5F5),
+          color: cs.surfaceContainerLow,
           borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: cs.outlineVariant),
         ),
         blockquote: theme.textTheme.bodyMedium?.copyWith(
-          color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+          color: cs.onSurfaceVariant,
           fontStyle: FontStyle.italic,
         ),
         blockquoteDecoration: BoxDecoration(
           border: Border(
-            left: BorderSide(
-              color: theme.colorScheme.primary.withValues(alpha: 0.5),
-              width: 3,
-            ),
+            left: BorderSide(color: cs.outline, width: 3),
           ),
         ),
-        tableBorder: TableBorder.all(
-          color: theme.dividerTheme.color ?? theme.dividerColor,
-        ),
+        tableBorder: TableBorder.all(color: cs.outlineVariant),
         tableHead: theme.textTheme.bodyMedium?.copyWith(
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w600,
         ),
         tableBody: theme.textTheme.bodyMedium,
         listBullet: theme.textTheme.bodyMedium,
+        a: TextStyle(
+          color: cs.primary,
+          decoration: TextDecoration.underline,
+          decorationColor: cs.primary.withValues(alpha: 0.4),
+        ),
       ),
       builders: {
         'code': _CodeBlockBuilder(isDark: isDark),

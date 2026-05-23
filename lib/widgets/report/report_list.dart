@@ -21,42 +21,39 @@ class ReportList extends ConsumerWidget {
       color: theme.scaffoldBackgroundColor,
       child: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.all(16),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
                     '报告列表',
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: theme.textTheme.titleLarge,
                   ),
                 ),
               ],
             ),
           ),
+          // 与「新对话」对齐:用 OutlinedButton,克制不抢主区域焦点
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: SizedBox(
               width: double.infinity,
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.add, size: 20),
+              child: OutlinedButton.icon(
+                icon: const Icon(Icons.add, size: 18),
                 label: const Text('新建报告'),
                 onPressed: () => showCreateReportDialog(context, ref),
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           Expanded(
             child: reportState.reports.isEmpty
                 ? Center(
                     child: Text(
                       '暂无报告',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.5,
-                        ),
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
                   )

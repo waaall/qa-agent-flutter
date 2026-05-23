@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../models/backend_config.dart';
 import '../../providers/config/backend_config_provider.dart';
+import '../../theme/app_theme.dart';
 
 /// 后端配置面板。
 class BackendConfigPanel extends ConsumerStatefulWidget {
@@ -230,22 +231,25 @@ class _BackendConfigPanelState extends ConsumerState<BackendConfigPanel> {
           ),
           if (testResult != null) ...[
             const SizedBox(height: 8),
-            Row(
-              children: [
-                Icon(
-                  testResult ? Icons.check_circle : Icons.error,
-                  size: 16,
-                  color: testResult ? Colors.green : theme.colorScheme.error,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  testResult ? '连接成功' : '连接失败',
-                  style: TextStyle(
-                    color: testResult ? Colors.green : theme.colorScheme.error,
+            Builder(builder: (ctx) {
+              // 用主题的语义色,而不是硬编码 Colors.green
+              final ok = AppTheme.success(ctx);
+              final color = testResult ? ok : theme.colorScheme.error;
+              return Row(
+                children: [
+                  Icon(
+                    testResult ? Icons.check_circle_outline : Icons.error_outline,
+                    size: 16,
+                    color: color,
                   ),
-                ),
-              ],
-            ),
+                  const SizedBox(width: 6),
+                  Text(
+                    testResult ? '连接成功' : '连接失败',
+                    style: theme.textTheme.bodySmall?.copyWith(color: color),
+                  ),
+                ],
+              );
+            }),
           ],
           ...extraFields,
         ],

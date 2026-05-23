@@ -22,30 +22,29 @@ class ChatContainer extends ConsumerWidget {
 
     return Column(
       children: [
+        // 头部:白底 + 发丝底边
         Container(
           height: 56,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
             border: Border(
-              bottom: BorderSide(
-                color: theme.dividerTheme.color ?? theme.dividerColor,
-              ),
+              bottom: BorderSide(color: theme.colorScheme.outlineVariant),
             ),
           ),
           child: Row(
             children: [
               if (showMenuButton)
                 IconButton(
-                  icon: const Icon(Icons.menu),
+                  icon: const Icon(Icons.menu, size: 20),
                   onPressed: onMenuTap,
                   tooltip: '菜单',
                 ),
-              const SizedBox(width: 8),
-              const Expanded(
+              const SizedBox(width: 4),
+              Expanded(
                 child: Text(
                   '智能问答',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  style: theme.textTheme.titleMedium,
                 ),
               ),
               const WorkspaceSwitcher(),
@@ -69,27 +68,34 @@ class ChatContainer extends ConsumerWidget {
   Widget _buildEmptyState(BuildContext context) {
     final theme = Theme.of(context);
 
+    // 空状态:更细的图标 + 拉开标题/正文的字重与色阶层次
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.chat_outlined,
-            size: 64,
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            '开始一个新对话',
-            style: theme.textTheme.titleMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+          Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainer,
+              borderRadius: BorderRadius.circular(28),
+            ),
+            child: Icon(
+              Icons.chat_bubble_outline,
+              size: 26,
+              color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 20),
           Text(
-            '输入您的问题，我会尽力为您解答',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+            '开始一个新对话',
+            style: theme.textTheme.titleMedium,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            '输入您的问题,我会尽力为您解答',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/stt/stt_provider.dart';
 import '../../providers/stt/stt_state.dart';
+import '../../theme/app_theme.dart';
 
 /// 语音录制按钮
 class AudioRecorderButton extends ConsumerWidget {
@@ -83,8 +84,8 @@ class AudioRecorderButton extends ConsumerWidget {
         );
 
       case RecorderState.success:
-        // 这个状态会很快被重置
-        return const Icon(Icons.check, color: Colors.green);
+        // 这个状态会很快被重置;成功色走主题语义色,不再硬编码
+        return Icon(Icons.check_rounded, color: AppTheme.success(context));
     }
   }
 
